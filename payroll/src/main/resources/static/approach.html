@@ -1,39 +1,102 @@
 <md-list flex> 
+	<md-list-item class="md-2-line">
+       <img ng-src="/img/justin_taylor.jpg" class="md-avatar" alt="Start Payment Date" />
+       <div class="md-list-item-text">
+         <h3>Thank you</h3>
+         <p>Thank you very much for this opportunity to present this technical assessment, I thoroughly enjoyed it and look forward to your feedback.</p>
+       </div>
+    </md-list-item>	
+    
+    <md-divider ></md-divider>
+     
+	<md-list-item class="md-3-line">
+       <img ng-src="/img/justin_taylor.jpg" class="md-avatar" alt="Start Payment Date" />
+       <div class="md-list-item-text">
+         <h3>Source Code</h3>
+         <p>All the source code for this project is available on Github. I have created a repository called playground for my demo and prototypes.</p>
+         <p>This particular technical assessment is in the only project in there at the moment called payroll: <a href="https://github.com/justiniantaylor/playground">View source on GitHub</a></p>         
+       </div>
+    </md-list-item>	
+    
+    <md-divider ></md-divider>
+     
 	<md-list-item class="md-3-line">
        <img ng-src="/img/justin_taylor.jpg" class="md-avatar" alt="Start Payment Date" />
        <div class="md-list-item-text">
          <h3>Spring Boot</h3>
-         <p>The assumption was that there was either a missing input parameter indicating the tax period / year, or that the start payment date range string was missing the year. 
-         In a real world scenario I would have requested recontracting the interface with the service client if possible to better bind the input parameters to their data types. 
-         However for this immediate requirement I just decided to include the year in the start payment date range string, ie. "01 March <b>2012</b> - 31 March <b>2012</b>".</p>
+         <p>I decided to use a micro service pattern for this assignment, so opted to use Spring Boot with a rest web service. I generally would package this service a bit differently, I would follow a naming convention, as well as not put any web pages into the service project, but to keep things simple for the code review I opted to include the web and resource portions together in one project.</p>
        </div>
      </md-list-item>
-     <md-list-item class="md-2-line">
+     
+     <md-divider ></md-divider>
+     
+     <md-list-item class="md-3-line">
        <img ng-src="/img/justin_taylor.jpg" class="md-avatar" alt="Additional Requirements" />
        <div class="md-list-item-text">
          <h3>Security</h3>
-         <p>In order to stay within the requirements I opted to not included any additional features such as: <p>        
+         <p>I opted to keep things simple and not include any security for this assignment, I could very easily leverage spring security into my boot application by adding the spring security maven dependency, 
+            doing some minor configuration and then be up and running with basic auth and csrf protection. I have done some more advanced security setups with an edge architecture / API Gateway using Spring Cloud deployed into a network DMZ and using spring session and redis for sharing auth state, but 
+            I thought replicating that setup would be too much for this assignment.</p>        
        </div>
      </md-list-item>   
+     
+     <md-divider ></md-divider>
+     
      <md-list-item class="md-2-line">
        <img ng-src="/img/justin_taylor.jpg" class="md-avatar" alt="Additional Requirements" />
        <div class="md-list-item-text">
          <h3>Database</h3>
-         <p>In order to stay within the requirements I opted to not included any additional features such as: <p>        
+         <p>Once again to keep things simple I used an H2 in memory SQL database to store my tax rate periods and rates in. I will hand write the DDL and setup up a mysql database in Amazon RDS if you would prefer me to do so.<p>        
        </div>
      </md-list-item>
+     
+     <md-divider ></md-divider>
+     
      <md-list-item class="md-2-line">
        <img ng-src="/img/justin_taylor.jpg" class="md-avatar" alt="Additional Requirements" />
        <div class="md-list-item-text">
          <h3>Service</h3>
-         <p>In order to stay within the requirements I opted to not included any additional features such as: <p>        
+         <p>I have encapsulated this business logic into a spring service component so that we may re-use this logic for multiple interfaces (Rest, SOAP etc), batch processes or events for this service and not be stuck with all the logic inside the rest controller.<p>        
        </div>
      </md-list-item>
+     
+     <md-divider ></md-divider>
+     
      <md-list-item class="md-2-line">
        <img ng-src="/img/justin_taylor.jpg" class="md-avatar" alt="Additional Requirements" />
        <div class="md-list-item-text">
          <h3>Web</h3>
-         <p>In order to stay within the requirements I opted to not included any additional features such as: <p>        
+         <p>I have created this very basic front end so that the assignment assessor may interact with the service and test the logic. I used AngularJS which I am very familiar with, but opted to try something new instead of bootstrap and tried angular material for the first time.<p>       
+       </div>
+     </md-list-item>
+     
+     <md-divider ></md-divider>
+     
+     <md-list-item class="md-2-line">
+       <img ng-src="/img/justin_taylor.jpg" class="md-avatar" alt="Additional Requirements" />
+       <div class="md-list-item-text">
+         <h3>Testing</h3>
+         <p>I have written two tests in JUnit, one to test the rest service / controller (integration test with MockMvc), and the other to test the service logic.<p>       
+       </div>
+     </md-list-item>
+     
+     <md-divider ></md-divider>
+     
+     <md-list-item class="md-2-line">
+       <img ng-src="/img/justin_taylor.jpg" class="md-avatar" alt="Additional Requirements" />
+       <div class="md-list-item-text">
+         <h3>Documentation</h3>
+         <p>I have code commented throughout to give indication to the code reviewer the logic that was followed. I have also written and generated the Javadocs (see github).<p>       
+       </div>
+     </md-list-item>
+     
+     <md-divider ></md-divider>
+     
+     <md-list-item class="md-2-line">
+       <img ng-src="/img/justin_taylor.jpg" class="md-avatar" alt="Additional Requirements" />
+       <div class="md-list-item-text">
+         <h3>Hosting</h3>
+         <p>I have deployed this spring boot application into a tomcat container on Amazon AWS using Elastic Beanstalk.<p>       
        </div>
      </md-list-item>
 </md-list>

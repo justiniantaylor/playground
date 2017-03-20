@@ -25,7 +25,7 @@ import com.playground.payroll.util.exception.MissingIncomeTaxPeriodException;
  * Service used for the employee payslip calculations for a payroll. This service will calculate
  * and employees gross income, income tax, net income and super amount.
  * <p>
- * We have encapsulted this business logic into a service component so that we may re-use
+ * We have encapsulated this business logic into a service component so that we may re-use
  * this logic for multiple interfaces (Rest, SOAP etc), batch processes or events.
  * <p>
  * We have chosen to run our bean validation at this service level instead of at the controller level  

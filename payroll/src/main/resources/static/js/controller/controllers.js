@@ -30,10 +30,14 @@ app.controller('payrollController', ['$scope', '$mdToast', 'payslipCalculatorSer
 		payslipCalculatorService.calculate($scope.payslipRequests)
         .then(function (response) {
             $scope.payslipResponses = response.data;
-            $mdToast.simple()
-	        .textContent('Successfully calculated payslip information.')
-	        .position(top)
-	        .hideDelay(3000)		                      
+            
+            var pinTo = $scope.getToastPosition();
+            $mdToast.show(
+            	      $mdToast.simple()
+            	        .textContent('Successfully calculated payslip information.')
+            	        .position(pinTo )
+            	        .hideDelay(3000)
+            	    );		                      
         }, function(error) {
             $scope.status = 'Unable to insert customer: ' + error.message;
         });
@@ -54,10 +58,32 @@ app.controller('payrollController', ['$scope', '$mdToast', 'payslipCalculatorSer
 	
 	$scope.getPayslipsHeader = function () {return ["Name", "Pay Period", "Gross Income", "Income Tax", "Net Income", "Super Amount"]};
 	
-	$scope.$watch('payslipRequestsForm.$valid', function(newVal) {
-	      $mdToast.simple()
-	        .textContent('Please be aware you have invalid data, you will not be able to submit until this is fixed!')
-	        .position(top)
-	        .hideDelay(3000)
-    });	
+	var last = {
+        bottom: false,
+        top: true,
+        left: false,
+        right: true
+    };
+
+    $scope.toastPosition = angular.extend({},last);
+
+    $scope.getToastPosition = function() {
+        sanitizePosition();
+
+        return Object.keys($scope.toastPosition)
+        .filter(function(pos) { return $scope.toastPosition[pos]; })
+        .join(' ');
+    };
+    
+    function sanitizePosition() {
+	    var current = $scope.toastPosition;
+	
+	    if ( current.bottom && last.top ) current.top = false;
+	    if ( current.top && last.bottom ) current.bottom = false;
+	    if ( current.right && last.left ) current.left = false;
+	    if ( current.left && last.right ) current.right = false;
+	
+	    last = angular.extend({},current);
+    }
+
 }]);
