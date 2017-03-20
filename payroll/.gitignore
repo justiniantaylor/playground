@@ -9,6 +9,6 @@ target/
 .settings
 .springBeans
 .mvn
-.mvnw
-.mvnw.cmd
+mvnw
+mvnw.cmd
 .target
