@@ -1,0 +1,40 @@
+<md-list flex> 
+	<md-list-item class="md-3-line">
+       <img ng-src="/img/justin_taylor.jpg" class="md-avatar" alt="Start Payment Date" />
+       <div class="md-list-item-text">
+         <h3>Web Front End</h3>
+         <p>
+         	I have not paid much special attention to the web front end portion, as I assumed the requirement was the payslip calculation service. I was considering just setting 
+         	up Swagger to allow the assignment assessor to interact with the service, however I decided to opt for a simplest option for the assessor and just write a basic front end. 
+       	</p>
+       </div>
+	</md-list-item>
+	<md-list-item class="md-3-line">
+       <img ng-src="/img/justin_taylor.jpg" class="md-avatar" alt="Start Payment Date" />
+       <div class="md-list-item-text">
+         <h3>Start Payment Date</h3>
+         <p>
+         	The assumption was that there was either a missing input parameter indicating the tax period / year, or that the start payment date range string was missing the year. 
+         	In a real world scenario I would have requested a re-contract of the interface with the service client if possible to better bind the input parameters to their data types. 
+        	However for this immediate requirement I decided to just include the year in the start payment date range string, ie. "01 March <b>2012</b> - 31 March <b>2012</b>".
+       	</p>
+       </div>
+	</md-list-item>
+    <md-list-item class="md-2-line">
+       <img ng-src="/img/justin_taylor.jpg" class="md-avatar" alt="Additional Requirements" />
+       <div class="md-list-item-text">
+         <h3>Additional Requirements</h3>
+         <p>In order to stay within the requirements I opted to not included any additional features such as: <p>
+         <ul>
+         	<li>Employee Assignment / Position</li>
+         	<li>Leave balances</li>
+         	<li>Overtime</li>
+         	<li>Pro Rata Payments</li>
+         	<li>Other payment periods such as daily or weekly</li>
+         	<li>Limit to only salaried employees, no hourly/wage employees.</li>
+         	<li>Dealing with multiple currencies or foreign languages</li>
+         	<li>Other payment periods such as daily or weekly</li>
+         </ul>
+       </div>
+	</md-list-item>
+</md-list>

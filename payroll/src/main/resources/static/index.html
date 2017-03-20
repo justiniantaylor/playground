@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<title>MYOB Payslip Assignment</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta charset="utf-8"/>
+	
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.css">
+	<link rel="stylesheet" href="css/app.css">
+</head>
+<div ng-controller="payrollController" class="payroll" ng-app="payrollApp" ng-cloak>
+
+	<md-content layout-padding ng-cloak> 
+		<md-toolbar class="md-hue-2">
+			<div class="md-toolbar-tools">
+				<h2 flex md-truncate>MYOB Payslip Assigment</h2>
+			</div>
+		</md-toolbar>
+		<md-tabs md-dynamic-height md-border-bottom >
+			<md-tab label="Payslip Calculator"> 
+				<div ng-hide="payslipResponses.length > 0" layout-padding>
+					<md-toolbar class="md-theme-light">
+					    <h2 class="md-toolbar-tools">
+					    	<span>Employees</span>
+						</h2>
+					</md-toolbar>
+				
+		         	<form name="payslipRequestsForm">
+						<div ng-repeat="payslipRequest in payslipRequests track by $index">
+							<div layout="row" flex>															
+								<md-input-container class="md-block" flex-gt-sm>
+									<label>First name</label> 
+									<input ng-model="payslipRequest.firstName" required> 
+								</md-input-container>
+			
+								<md-input-container class="md-block" flex-gt-sm>
+									<label>Last name</label> 
+									<input ng-model="payslipRequest.lastName" required>
+								</md-input-container>
+			
+								<md-input-container class="md-block" flex-gt-sm>
+									<label>Annual Salary</label> 
+									<input type="number" ng-model="payslipRequest.annualSalary" min="0" required> 
+								</md-input-container>
+			
+								<md-input-container class="md-block" flex-gt-sm>
+									<label>Super Rate</label> 
+									<input ng-model="payslipRequest.superRate" pattern="[0-9]+(%)?"  placeholder="%" required>								
+								</md-input-container>							
+
+								<md-input-container class="md-block" flex-gt-sm>
+									<label>Payment Start Date</label> 
+									<md-select ng-model="payslipRequest.paymentStartDate" required>
+										<md-option ng-repeat="paymentPeriod in paymentPeriods track by $index" value="{{paymentPeriod}}">
+											{{paymentPeriod}} 
+										</md-option> 
+									</md-select> 
+									 	
+								</md-input-container>
+									
+								<div>
+									<md-button class="md-raised md-warn" aria-label="Remove" ng-click="remove($index)">Remove</md-button>
+        						</div>											
+							</div>
+						</div>
+					</form>
+			        <md-content layout="row" layout-align="end center">
+			          	<md-button class="md-raised" aria-label="Add" ng-click="add()">Add Employee</md-button> 							          
+						<md-button class="md-raised md-primary" ng-click="calculate()" ng-disabled="payslipRequestsForm.$invalid">Calculate Pay</md-button> 		
+			        </md-content>
+			    </div>   
+			    <div ng-show="payslipResponses.length > 0" layout-padding>
+			        <md-toolbar class="md-theme-light">
+					    <h2 class="md-toolbar-tools">
+					    	<span>Payslips</span>
+						</h2>
+					</md-toolbar>
+		         	<div ng-repeat="payslipResponse in payslipResponses track by $index">
+						<div layout="row" flex>			
+							<md-input-container class="md-block" flex-gt-sm>
+								<label>Name</label> 
+								<input ng-model="payslipResponse.name" disabled> 
+							</md-input-container>
+							
+							<md-input-container class="md-block" flex-gt-sm>
+								<label>Pay Period</label> 
+								<input ng-model="payslipResponse.payPeriod" disabled> 
+							</md-input-container>	
+		
+							<md-input-container class="md-block" flex-gt-sm>
+								<label>Gross Income</label> 
+								<input ng-model="payslipResponse.grossIncome" disabled>
+							</md-input-container>
+		
+							<md-input-container class="md-block" flex-gt-sm>
+								<label>Income Tax</label> 
+								<input ng-model="payslipResponse.incomeTax" disabled> 
+							</md-input-container>
+		
+							<md-input-container class="md-block" flex-gt-sm>
+								<label>Net Income</label> 
+								<input ng-model="payslipResponse.netIncome" disabled> 
+							</md-input-container>
+							
+							<md-input-container class="md-block" flex-gt-sm>
+								<label>Super Amount</label> 
+								<input ng-model="payslipResponse.superAmount" disabled> 
+							</md-input-container>															
+						</div>
+					</div>
+
+			        <md-content layout="row" layout-align="end center">
+			        	<md-button class="md-raised" aria-label="Export" add-bom="true" csv-header="getPayslipsHeader()" ng-csv="getPayslips()" filename="payslips.csv">Export</md-button> 	
+			          	<md-button class="md-raised md-primary" aria-label="Close" ng-click="close()">Close</md-button> 							          	
+			        </md-content>
+			    </div>
+			</md-tab> 
+			<md-tab label="Approach"> 
+				<md-content class="md-padding">
+					<div ng-include="'approach.html'"></div>					
+				</md-content> 
+			</md-tab> 
+			<md-tab label="Assumptions"> 
+				<md-content class="md-padding">
+					<div ng-include="'assumptions.html'"></div>		
+				</md-content> 			
+			</md-tab> 
+		</md-tabs> 
+	</md-content>
+
+	<!-- Angular Material requires Angular.js Libraries -->
+	<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
+	<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-route.min.js"></script>
+	<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-resource.min.js"></script>
+	<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-animate.min.js"></script>
+	<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-aria.min.js"></script>
+	<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-messages.min.js"></script>
+	<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-sanitize.min.js"></script>
+	
+	<!-- Angular CSV Library -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/ng-csv/0.3.6/ng-csv.min.js"></script>	
+	
+	<!-- Angular Material Library -->
+	<script src="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.js"></script>
+
+	<!-- Your application directives  -->
+	<script src="js/directive/directives.js"></script>
+	
+	<!-- Your application controller  -->
+	<script src="js/controller/controllers.js"></script>
+	
+	<!-- Your application services  -->
+	<script src="js/service/services.js"></script>
+	
+	<!-- Your application bootstrap  -->
+	<script src="js/app.js"></script>
+</body>
+</html>
