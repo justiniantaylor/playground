@@ -23,7 +23,7 @@ public class PayslipControllerTest extends RestControllerTest {
 		payslipRequest.setLastName("Rudd");
 		payslipRequest.setAnnualSalary(new Long(60050));
 		payslipRequest.setSuperRate("9%");
-		payslipRequest.setPaymentStartDate("01 March 2013 – 31 March 2013");
+		payslipRequest.setPaymentStartDate("01 March 2013 - 31 March 2013");
 		payslipRequests.add(payslipRequest);
 
 		mockMvc.perform(post("/payslip/calculate")
@@ -40,7 +40,7 @@ public class PayslipControllerTest extends RestControllerTest {
 		payslipRequest.setLastName("Rudd");
 		payslipRequest.setAnnualSalary(new Long(60050));
 		payslipRequest.setSuperRate("9%");
-		payslipRequest.setPaymentStartDate("01 March 2017 – 31 March 2017");
+		payslipRequest.setPaymentStartDate("01 March 2017 - 31 March 2017");
 		payslipRequests.add(payslipRequest);
 
 		mockMvc.perform(post("/payslip/calculate")
@@ -56,7 +56,7 @@ public class PayslipControllerTest extends RestControllerTest {
 		payslipRequest.setLastName("Rudd");
 		payslipRequest.setAnnualSalary(new Long(60050));
 		payslipRequest.setSuperRate("9%");
-		payslipRequest.setPaymentStartDate("01 March 2013 – 31 March 2013");
+		payslipRequest.setPaymentStartDate("01 March 2013 - 31 March 2013");
 		payslipRequests.add(payslipRequest);
 
 		mockMvc.perform(post("/payslip/calculate")
@@ -73,7 +73,7 @@ public class PayslipControllerTest extends RestControllerTest {
 		payslipRequest.setFirstName("David");
 		payslipRequest.setAnnualSalary(new Long(60050));
 		payslipRequest.setSuperRate("9%");
-		payslipRequest.setPaymentStartDate("01 March 2013 – 31 March 2013");
+		payslipRequest.setPaymentStartDate("01 March 2013 - 31 March 2013");
 		payslipRequests.add(payslipRequest);
 		
 		mockMvc.perform(post("/payslip/calculate")
@@ -91,7 +91,7 @@ public class PayslipControllerTest extends RestControllerTest {
 		payslipRequest.setFirstName("David");
 		payslipRequest.setLastName("Rudd");
 		payslipRequest.setSuperRate("9%");
-		payslipRequest.setPaymentStartDate("01 March 2013 – 31 March 2013");
+		payslipRequest.setPaymentStartDate("01 March 2013 - 31 March 2013");
 		payslipRequests.add(payslipRequest);
 		
 		mockMvc.perform(post("/payslip/calculate")
@@ -109,7 +109,7 @@ public class PayslipControllerTest extends RestControllerTest {
 		payslipRequest.setFirstName("David");
 		payslipRequest.setLastName("Rudd");
 		payslipRequest.setAnnualSalary(new Long(60050));
-		payslipRequest.setPaymentStartDate("01 March 2013 – 31 March 2013");
+		payslipRequest.setPaymentStartDate("01 March 2013 - 31 March 2013");
 		payslipRequests.add(payslipRequest);
 		
 		mockMvc.perform(post("/payslip/calculate")
