@@ -27,6 +27,13 @@ public class PayslipServiceTest {
     private PayslipService payslipService;
 	       
 	@Test
+	public void testGetPaymentPeriods() {
+		List<String> paymentPeriods = payslipService.getPaymentPeriods();
+		
+		assertEquals(12, paymentPeriods.size());
+	}
+	
+	@Test
 	public void testCalculate() {
 		List<PayslipRequestDTO> payslipRequests = new ArrayList<PayslipRequestDTO>();
 		PayslipRequestDTO davidRudd = new PayslipRequestDTO();
