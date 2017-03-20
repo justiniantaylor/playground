@@ -41,7 +41,7 @@ public class PayslipServiceTest {
 		davidRudd.setLastName("Rudd");
 		davidRudd.setAnnualSalary(new Long(60050));
 		davidRudd.setSuperRate("9%");
-		davidRudd.setPaymentStartDate("01 March 2013 – 31 March 2013");	
+		davidRudd.setPaymentStartDate("01 March 2013 - 31 March 2013");	
 		payslipRequests.add(davidRudd);
 		
 		PayslipRequestDTO ryanChen = new PayslipRequestDTO();
@@ -49,7 +49,7 @@ public class PayslipServiceTest {
 		ryanChen.setLastName("Chen");
 		ryanChen.setAnnualSalary(new Long(120000));
 		ryanChen.setSuperRate("10%");
-		ryanChen.setPaymentStartDate("01 March 2013 – 31 March 2013");	
+		ryanChen.setPaymentStartDate("01 March 2013 - 31 March 2013");	
 		payslipRequests.add(ryanChen);
 		
 		List<PayslipResponseDTO> payslipResponses = payslipService.calculate(payslipRequests);
@@ -85,7 +85,7 @@ public class PayslipServiceTest {
 		davidRudd.setLastName("Rudd");
 		davidRudd.setAnnualSalary(new Long(18200));
 		davidRudd.setSuperRate("9%");
-		davidRudd.setPaymentStartDate("01 March 2013 – 31 March 2013");	
+		davidRudd.setPaymentStartDate("01 March 2013 - 31 March 2013");	
 		payslipRequests.add(davidRudd);
 
 		List<PayslipResponseDTO> payslipResponses = payslipService.calculate(payslipRequests);
@@ -108,7 +108,7 @@ public class PayslipServiceTest {
 		davidRudd.setLastName("Rudd");
 		davidRudd.setAnnualSalary(new Long(190000));
 		davidRudd.setSuperRate("9%");
-		davidRudd.setPaymentStartDate("01 March 2013 – 31 March 2013");	
+		davidRudd.setPaymentStartDate("01 March 2013 - 31 March 2013");	
 		payslipRequests.add(davidRudd);
 
 		List<PayslipResponseDTO> payslipResponses = payslipService.calculate(payslipRequests);
@@ -140,7 +140,7 @@ public class PayslipServiceTest {
 		davidRudd.setLastName("Rudd");
 		davidRudd.setAnnualSalary(new Long(60050));
 		davidRudd.setSuperRate("9%");
-		davidRudd.setPaymentStartDate("01 March 2017 – 31 March 2017");
+		davidRudd.setPaymentStartDate("01 March 2017 - 31 March 2017");
 		payslipRequests.add(davidRudd);
 		
 		payslipService.calculate(payslipRequests);
@@ -154,7 +154,7 @@ public class PayslipServiceTest {
 		davidRudd.setLastName("Rudd");
 		davidRudd.setAnnualSalary(new Long(60050));
 		davidRudd.setSuperRate("9%");
-		davidRudd.setPaymentStartDate("01 March – 31 March");
+		davidRudd.setPaymentStartDate("01 March - 31 March");
 		payslipRequests.add(davidRudd);
 		
 		payslipService.calculate(payslipRequests);
