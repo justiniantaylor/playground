@@ -11,6 +11,7 @@ app.controller('robotController', ['$scope','robotService',function ($scope, rob
 			$scope.response = "Invalid command!"
 			return;
 		}
+		$scope.commandString = angular.uppercase($scope.commandString);
 		
 		if($scope.commandString.indexOf('PLACE ') !=-1) {
 			var subCommand = $scope.commandString.replace('PLACE ', '');		
