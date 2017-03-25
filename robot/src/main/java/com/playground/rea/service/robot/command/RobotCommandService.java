@@ -1,39 +1,38 @@
-package com.playground.rea.service.robot;
+package com.playground.rea.service.robot.command;
 
 import org.springframework.validation.annotation.Validated;
 
-import com.playground.rea.service.robot.model.CommandResponse;
+import com.playground.rea.domain.Robot;
 import com.playground.rea.util.direction.DirectionEnum;
-import com.playground.rea.service.robot.model.Robot;
 
 /**
- * Interface for the Robot Service.
+ * Interface for the Robot Command Service.
  * 
  * @author	Justin Taylor
  * @version	%I%, %G%
- * @see RobotServiceImpl
+ * @see RobotCommandServiceImpl
  * @since 1.0
  */
 @Validated
-public interface RobotService {
+public interface RobotCommandService {
 	
 	/**
-	 * @see RobotServiceImpl#place(int, int, DirectionEnum)
+	 * @see RobotCommandServiceImpl#place(int, int, DirectionEnum)
 	 */
 	public CommandResponse place(Robot robot, int x, int y, DirectionEnum direction);
 	
 	/**
-	 * @see RobotServiceImpl#move()
+	 * @see RobotCommandServiceImpl#move()
 	 */
 	public CommandResponse move(Robot robot);
 	
 	/**
-	 * @see RobotServiceImpl#left()
+	 * @see RobotCommandServiceImpl#left()
 	 */
 	public CommandResponse left(Robot robot);
 	
 	/**
-	 * @see RobotServiceImpl#right()
+	 * @see RobotCommandServiceImpl#right()
 	 */
 	public CommandResponse right(Robot robot);
 }

@@ -1,7 +1,11 @@
-package com.playground.rea.service.robot.model;
+package com.playground.rea.domain;
 
 import java.io.Serializable;
 
+import org.springframework.hateoas.ResourceSupport;
+
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.playground.rea.util.direction.DirectionEnum;
 
 /**
@@ -11,7 +15,7 @@ import com.playground.rea.util.direction.DirectionEnum;
  * @author	Justin Taylor
  * @version	%I%, %G%
  */
-public class Robot implements Serializable {
+public class Robot extends ResourceSupport implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	
@@ -22,6 +26,13 @@ public class Robot implements Serializable {
 	private DirectionEnum facing;
 	
 	private Table table;
+			
+	@JsonCreator
+	public Robot(@JsonProperty("x") int x, @JsonProperty("y") int y, @JsonProperty("facing") DirectionEnum facing) {
+		this.x = x;
+		this.y = y;
+		this.facing = facing;
+	}
 	
 	public int getX() {
 		return x;
@@ -56,7 +67,11 @@ public class Robot implements Serializable {
 	}
 	
 	public String report() {
-		return x + "," + y + "," + facing;
+		if(isPlaced()) {
+			return x + "," + y + "," + facing;	
+		} else {
+			return "NOT PLACED";
+		}
 	}
 	
 	public boolean isPlaced() {

@@ -13,7 +13,7 @@
 
 	<div ng-controller="robotController" class="md-padding" ng-cloak="">
 		<md-content class="md-padding" layout-xs="column" layout="row" layout-align="center center">
-			<div flex-xs flex-gt-xs="40" layout="column" layout-align="center center">
+			<div flex-xs flex-gt-sm="40" layout="column" layout-align="center center">
 				<md-card class="card-40-center"> 
 					<md-card-title>
 						<md-card-title-text> 
@@ -23,22 +23,22 @@
 
 					<div class="md-padding" layout-align="center">								
 				        <div layout="column">
-				            <div layout="row" flex>
-								<label>{{response}}</label>																										 
+				            <div layout="row" flex>		
+				            	<md-subheader class="md-primary" flex>{{response}}</md-subheader>																										 
 							</div>
 						</div>
 						<br>
 						<div layout="column">
 				            <div layout="row" flex>
-					            <md-input-container class="md-block" flex-gt-sm>
-									<label>Command</label> 
-									<input ng-model="commandString" placeholder="PLACE X,Y,F | MOVE | LEFT | RIGHT | REPORT" required> 
+					            <md-input-container class="md-block" flex>
+									<label>Command</label> 									
+									<input ng-model="commandString" placeholder="{{commandList}}" ng-keypress="($event.charCode==13)? sendCommand() : return"> 
 								</md-input-container>												 
 							</div>
 				        </div>
 				        <md-card-actions layout="row" layout-align="center right">		
 			                <center>
-			                    <md-button class="md-primary md-raised" ng-click="sendCommand()">Command</md-button>	     			                                    
+			                    <md-button class="md-primary md-raised" ng-click="sendCommand()" ng-disabled="commandString == ''">Command</md-button>	     			                                    
 			                </center>
 			            </md-card-actions> 			
 					</div>						           						

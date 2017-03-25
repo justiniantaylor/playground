@@ -1,13 +1,12 @@
-package com.playground.rea.service.robot;
+package com.playground.rea.service.robot.command;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
-import com.playground.rea.service.robot.model.CommandResponse;
+import com.playground.rea.domain.Robot;
+import com.playground.rea.domain.Table;
 import com.playground.rea.util.direction.DirectionEnum;
-import com.playground.rea.service.robot.model.Robot;
-import com.playground.rea.service.robot.model.Table;
 import com.playground.rea.util.exception.InvalidRobotException;
 import com.playground.rea.util.exception.RobotNotPlacedException;
 
@@ -19,10 +18,10 @@ import com.playground.rea.util.exception.RobotNotPlacedException;
  * @see RobotCommandService
  * @since 1.0
  */
-@Service("robotService")
-public class RobotServiceImpl implements RobotService {
+@Service("robotCommandService")
+public class RobotCommandServiceImpl implements RobotCommandService {
 	
-	private static final Logger log = LoggerFactory.getLogger(RobotServiceImpl.class);
+	private static final Logger log = LoggerFactory.getLogger(RobotCommandServiceImpl.class);
 	
 	/**
 	 * This will put the toy robot on the table in position X, Y and facing either NORTH, SOUTH, EAST or WEST.
@@ -38,7 +37,7 @@ public class RobotServiceImpl implements RobotService {
      * @return          the robot command response, whether the was command accepted and the robots current location.
 	 */
 	public CommandResponse place(Robot robot, int x, int y, DirectionEnum direction) {
-		CommandResponse commandResponse = new CommandResponse();		
+		CommandResponse commandResponse = new CommandResponse(null);		
 		
 		log.info("Place robot at x = " + x + ", y = " + y + " facing " + direction);
 		
@@ -60,13 +59,10 @@ public class RobotServiceImpl implements RobotService {
 				commandResponse.getRobot().setFacing(direction);
 				commandResponse.setCommandAccepted(true);		
 			}
-		} catch(InvalidRobotException ire) {
-			commandResponse.setMessage(ire.getMessage());
+		} catch (InvalidRobotException | RobotNotPlacedException  e) {
+			commandResponse.setMessage(e.getMessage());
 			commandResponse.setCommandAccepted(false);	
-		} catch(RobotNotPlacedException rne) {
-			commandResponse.setMessage(rne.getMessage());
-			commandResponse.setCommandAccepted(false);	
-		}
+		} 
 		log.info(commandResponse.getMessage());
 		
 		return commandResponse;
@@ -80,14 +76,13 @@ public class RobotServiceImpl implements RobotService {
      * @return       the robot command response, whether the was command accepted and the robots current location.
 	 */
 	public CommandResponse move(Robot robot) {					
-		CommandResponse commandResponse = new CommandResponse();
-		commandResponse.setRobot(robot);
-		
+		CommandResponse commandResponse = new CommandResponse(robot);
+
 		try {
 			validateRobotPlaced(robot);
 			
-			int requestXPosition = 0;
-	  	    int requestYPosition = 0;	    	 	   
+			int requestXPosition = -1;
+	  	    int requestYPosition = -1;	    	 	   
 			switch (robot.getFacing()) {
 		      case NORTH:	
 		    	  requestXPosition = robot.getX();
@@ -108,32 +103,19 @@ public class RobotServiceImpl implements RobotService {
 		    }
 			log.info("Move robot " + robot.getFacing() + " to x="+ requestXPosition + ", y=" + requestYPosition);
 					
-			if (requestYPosition < 0) {
+			if (requestYPosition < 0 || requestXPosition < 0 || requestYPosition >= robot.getTable().getDimensionY() || requestXPosition >= robot.getTable().getDimensionX()) {
 				commandResponse.setCommandAccepted(false);
-			} else if (requestYPosition >= robot.getTable().getDimensionY()) {
-				commandResponse.setCommandAccepted(false);
-			} else if (requestXPosition < 0) {
-				commandResponse.setCommandAccepted(false);
-			} else if (requestXPosition >= robot.getTable().getDimensionX()) {
-				commandResponse.setCommandAccepted(false);
+				commandResponse.setMessage("Robot will fall off the " + robot.getFacing() + " of table, do not move.");
 			} else {				
 				commandResponse.getRobot().setX(requestXPosition);
 				commandResponse.getRobot().setY(requestYPosition);
 				commandResponse.setCommandAccepted(true);	
-			}
-			
-			if(!commandResponse.isCommandAccepted()) {
-				commandResponse.setMessage("Robot will fall off the " + robot.getFacing() + " of table, do not move.");
-			} else {
 				commandResponse.setMessage("Moved robot " +  robot.getFacing() + " to x=" + commandResponse.getRobot().getX() + ", y=" + commandResponse.getRobot().getY());
 			}
-		} catch(InvalidRobotException ire) {
-			commandResponse.setMessage(ire.getMessage());
+		} catch (InvalidRobotException | RobotNotPlacedException  e) {
+			commandResponse.setMessage(e.getMessage());
 			commandResponse.setCommandAccepted(false);	
-		} catch(RobotNotPlacedException rne) {
-			commandResponse.setMessage(rne.getMessage());
-			commandResponse.setCommandAccepted(false);	
-		}
+		} 
 	
 		log.info(commandResponse.getMessage());
 		
@@ -170,8 +152,7 @@ public class RobotServiceImpl implements RobotService {
      * @return 		 the robot command response, whether the was command accepted and the robots current direction.
 	 */
 	private CommandResponse turn(Robot robot, boolean right) {	
-		CommandResponse commandResponse = new CommandResponse();
-		commandResponse.setRobot(robot);
+		CommandResponse commandResponse = new CommandResponse(robot);
 		
 		log.info("Turn robot " + (right ? "right" : "left") + " from " + robot.getFacing());
 		
@@ -194,13 +175,10 @@ public class RobotServiceImpl implements RobotService {
 		    }
 			commandResponse.setMessage("Turned robot " + (right ? "right" : "left") + ", it is now facing " + commandResponse.getRobot().getFacing());		
 			commandResponse.setCommandAccepted(true);	
-		} catch(InvalidRobotException ire) {
-			commandResponse.setMessage(ire.getMessage());
+		} catch (InvalidRobotException | RobotNotPlacedException  e) {
+			commandResponse.setMessage(e.getMessage());
 			commandResponse.setCommandAccepted(false);	
-		} catch(RobotNotPlacedException rne) {
-			commandResponse.setMessage(rne.getMessage());
-			commandResponse.setCommandAccepted(false);	
-		}
+		} 
 		log.info(commandResponse.getMessage());
 		
 		return commandResponse;

@@ -1,4 +1,4 @@
-package com.playground.rea.service.robot.model;
+package com.playground.rea.domain;
 
 import java.io.Serializable;
 

@@ -1,10 +1,23 @@
 var app = angular.module('robot-controllers', []);
 
-app.controller('robotController', ['$scope','robotService',function ($scope, robotService) {
+app.controller('robotController', ['$scope','robotService', 'robotCommandService',function ($scope, robotService, robotCommandService) {
 		
-	$scope.robot = {table: {}};
+	$scope.robot;
+	createRobot();
+	
 	$scope.commandString = '';
 	$scope.response = "Welcome, please issue a command for your robot."
+	$scope.commandList = "PLACE X,Y,F";		
+		
+	function createRobot() {	
+		robotService.create()
+        .then(function (response) {
+        	$scope.robot = response.data;	
+        	$scope.response = "Robot is ready for your command.";	   		        
+        }, function(error) {
+            $scope.response = 'Could not create a new robot!';
+        });
+	};
 	
 	$scope.sendCommand = function () {	
 		if ($scope.commandString == '') {
@@ -17,10 +30,11 @@ app.controller('robotController', ['$scope','robotService',function ($scope, rob
 			var subCommand = $scope.commandString.replace('PLACE ', '');		
 			var array = subCommand.split(',');
 			if (array.length == 3) {
-				robotService.place($scope.robot, array[0], array[1], array[2])
+				robotCommandService.place($scope.robot, array[0], array[1], array[2])
 		        .then(function (response) {
 		        	$scope.robot = response.data.robot;	
-		        	$scope.response = response.data.message;	   		        
+		        	$scope.response = response.data.message;	
+		        	$scope.commandList = "PLACE X,Y,F | MOVE | LEFT | RIGHT | REPORT";
 		        }, function(error) {
 		            $scope.response = 'Invalid command!';
 		        });
@@ -28,7 +42,7 @@ app.controller('robotController', ['$scope','robotService',function ($scope, rob
 				$scope.response = "Invalid command!"
 			}
 		} else if ($scope.commandString == 'MOVE') {
-			robotService.move($scope.robot)
+			robotCommandService.move($scope.robot)
 	        .then(function (response) {
 	        	$scope.robot = response.data.robot;	
 	        	$scope.response = response.data.message;	
@@ -36,7 +50,7 @@ app.controller('robotController', ['$scope','robotService',function ($scope, rob
 	        	 $scope.response = 'Invalid command!';
 	        });
 		} else if ($scope.commandString == 'LEFT') {
-			robotService.left($scope.robot)
+			robotCommandService.left($scope.robot)
 	        .then(function (response) {
 	        	$scope.robot = response.data.robot;	
 	        	$scope.response = response.data.message;	
@@ -44,7 +58,7 @@ app.controller('robotController', ['$scope','robotService',function ($scope, rob
 	        	 $scope.response = 'Invalid command!';
 	        });
 		} else if ($scope.commandString == 'RIGHT') {
-			robotService.right($scope.robot)
+			robotCommandService.right($scope.robot)
 	        .then(function (response) {
 	        	$scope.robot = response.data.robot;	
 	        	$scope.response = response.data.message;	
