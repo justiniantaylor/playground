@@ -31,7 +31,7 @@ public class PaymentPeriodController {
      * @see PaymentPeriodServiceImpls#findAll
      */
     @RequestMapping(value = "/", method = RequestMethod.GET, produces = "application/json")
-    public  HttpEntity<PaymentPeriodsDTO> findAll() {
+    public HttpEntity<PaymentPeriodsDTO> findAll() {
   
     	PaymentPeriodsDTO paymentPeriods = paymentPeriodService.findAll();
     	paymentPeriods.add(linkTo(methodOn(PaymentPeriodController.class).findAll()).withSelfRel());
