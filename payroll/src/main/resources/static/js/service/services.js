@@ -1,16 +1,24 @@
 var app = angular.module('payroll-service', []);
 
-app.factory('payslipCalculatorService', ['$http', function($http) {
-    var urlBase = '/payslip';
-    var payslipCalculatorService = {};
+app.factory('paymentPeriodService', ['$http', function($http) {
+    var urlBase = '/payment/period/';
+    var paymentPeriodService = {};
 
-    payslipCalculatorService.getPaymentPeriods = function () {
-        return $http.get(urlBase + "/payment-period");
+    paymentPeriodService.findAll = function () {
+        return $http.get(urlBase);
     };
+
+    return paymentPeriodService;
+}]);
+
+app.factory('payslipCalculateService', ['$http', function($http) {
+    var urlBase = '/payslip/calculate/';
+    var payslipCalculateService = {};
+
     
-    payslipCalculatorService.calculate = function (payslipRequests) {
-        return $http.post(urlBase + "/calculate", payslipRequests);
+    payslipCalculateService.calculate = function (payslipRequests) {
+        return $http.post(urlBase, payslipRequests);
     };
 
-    return payslipCalculatorService;
+    return payslipCalculateService;
 }]);

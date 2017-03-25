@@ -8,18 +8,23 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import com.playground.payroll.controller.PayslipController;
+import com.playground.payroll.controller.PaymentPeriodController;
+import com.playground.payroll.controller.PayslipCalculateController;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class PayrollApplicationTests {
 
 	@Autowired
-    protected PayslipController payslipController;
+    protected PaymentPeriodController paymentPeriodController;
+	
+	@Autowired
+    protected PayslipCalculateController payslipCalculateController;
 	
 	@Test
 	public void contextLoads() {
-		assertThat(payslipController).isNotNull();
+		assertThat(paymentPeriodController).isNotNull();
+		assertThat(payslipCalculateController).isNotNull();
 	}
 
 }

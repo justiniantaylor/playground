@@ -1,6 +1,6 @@
 var app = angular.module('payroll-controller', []);
 
-app.controller('payrollController', ['$scope', '$mdToast', 'payslipCalculatorService',function ($scope, $mdToast, payslipCalculatorService) {
+app.controller('mainController', ['$scope', '$mdToast', 'paymentPeriodService', 'payslipCalculateService',function ($scope, $mdToast, paymentPeriodService, payslipCalculateService) {
 
 	$scope.paymentPeriods = getPaymentPeriods();
 	
@@ -27,9 +27,9 @@ app.controller('payrollController', ['$scope', '$mdToast', 'payslipCalculatorSer
 	};	
 	
 	$scope.calculate = function () {
-		payslipCalculatorService.calculate($scope.payslipRequests)
+		payslipCalculateService.calculate($scope.payslipRequests)
         .then(function (response) {
-            $scope.payslipResponses = response.data;
+            $scope.payslipResponses = response.data.payslipResponses;
             
             var pinTo = $scope.getToastPosition();
             $mdToast.show(
@@ -44,9 +44,9 @@ app.controller('payrollController', ['$scope', '$mdToast', 'payslipCalculatorSer
 	};
 	
 	function getPaymentPeriods() {
-		payslipCalculatorService.getPaymentPeriods()
+		paymentPeriodService.findAll()
         .then(function (response) {            	
-        	$scope.paymentPeriods = response.data;
+        	$scope.paymentPeriods = response.data.paymentPeriods;
         }, function(error) {
             $scope.status = 'Unable to retrieve the available payment periods: ' + error.message;
         });

@@ -9,7 +9,7 @@
 	<link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.css">
 	<link rel="stylesheet" href="css/app.css">
 </head>
-<div ng-controller="payrollController" class="payroll" ng-app="payrollApp" ng-cloak>
+<div ng-controller="mainController" class="payroll" ng-app="payrollApp" ng-cloak>
 
 	<md-content layout-padding ng-cloak> 
 		<md-toolbar class="md-hue-2">
@@ -28,7 +28,7 @@
 				
 		         	<form name="payslipRequestsForm">
 						<div ng-repeat="payslipRequest in payslipRequests track by $index">
-							<div layout="row" flex>															
+							<div layout-gt-md="row">															
 								<md-input-container class="md-block" flex-gt-sm>
 									<label>First name</label> 
 									<input ng-model="payslipRequest.firstName" required> 
@@ -60,7 +60,7 @@
 								</md-input-container>
 									
 								<div>
-									<md-button class="md-raised md-warn" aria-label="Remove" ng-click="remove($index)">Remove</md-button>
+									<md-button class="md-raised md-warn" aria-label="Remove" ng-click="remove($index)" flex-gt-sm>Remove</md-button>
         						</div>											
 							</div>
 						</div>
@@ -77,7 +77,7 @@
 						</h2>
 					</md-toolbar>
 		         	<div ng-repeat="payslipResponse in payslipResponses track by $index">
-						<div layout="row" flex>			
+						<div layout-gt-md="row">			
 							<md-input-container class="md-block" flex-gt-sm>
 								<label>Name</label> 
 								<input ng-model="payslipResponse.name" disabled> 
@@ -89,7 +89,7 @@
 							</md-input-container>	
 		
 							<md-input-container class="md-block" flex-gt-sm>
-								<label>Gross Income</label> 
+								<label>Gross Income</label>
 								<input ng-model="payslipResponse.grossIncome" disabled>
 							</md-input-container>
 		
@@ -111,20 +111,15 @@
 					</div>
 
 			        <md-content layout="row" layout-align="end center">
-			        	<md-button class="md-raised" aria-label="Export" add-bom="true" csv-header="getPayslipsHeader()" ng-csv="getPayslips()" filename="payslips.csv">Export</md-button> 	
+			        	<md-button class="md-raised" aria-label="Export" csv-header="getPayslipsHeader()" ng-csv="getPayslips()" filename="payslips.csv">Export</md-button> 	
 			          	<md-button class="md-raised md-primary" aria-label="Close" ng-click="close()">Close</md-button> 							          	
 			        </md-content>
 			    </div>
 			</md-tab> 
-			<md-tab label="Approach"> 
+			<md-tab label="Thank You"> 
 				<md-content class="md-padding">
-					<div ng-include="'approach.html'"></div>					
+					<div ng-include="'thank-you.html'"></div>					
 				</md-content> 
-			</md-tab> 
-			<md-tab label="Assumptions"> 
-				<md-content class="md-padding">
-					<div ng-include="'assumptions.html'"></div>		
-				</md-content> 			
 			</md-tab> 
 		</md-tabs> 
 	</md-content>

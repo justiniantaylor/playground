@@ -3,14 +3,11 @@ package com.playground.payroll.service.payslip.dto;
 import java.io.Serializable;
 import java.math.BigDecimal;
 
-import com.playground.payroll.domain.IncomeTaxPeriod;
-
 /**
  * DTO containing the payslip data for an employee.
  * 
  * @author	Justin Taylor
  * @version	%I%, %G%
- * @see IncomeTaxPeriod
  */
 public class PayslipResponseDTO implements Serializable {
 
@@ -21,7 +18,7 @@ public class PayslipResponseDTO implements Serializable {
 	private Long grossIncome;
 	private Long incomeTax;
 	private Long netIncome;
-	private Long superAmount;//could not user "super" as per the requirement document as super is a reserved word.
+	private Long superAmount;
 	
 	public String getName() {
 		return name;

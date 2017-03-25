@@ -5,8 +5,7 @@ import java.io.Serializable;
 import javax.validation.constraints.NotNull;
 
 /**
- * DTO containing the employee details including their remuneration used
- * to calculate the payslip data.
+ * DTO containing the employee details including their remuneration used to calculate the payslip data.
  * 
  * @author	Justin Taylor
  * @version	%I%, %G%

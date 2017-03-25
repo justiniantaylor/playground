@@ -7,7 +7,7 @@ import javax.validation.Valid;
 import org.springframework.validation.annotation.Validated;
 
 import com.playground.payroll.service.payslip.dto.PayslipRequestDTO;
-import com.playground.payroll.service.payslip.dto.PayslipResponseDTO;
+import com.playground.payroll.service.payslip.dto.PayslipResponsesDTO;
 
 /**
  * Interface for the Payslip Service.
@@ -19,14 +19,9 @@ import com.playground.payroll.service.payslip.dto.PayslipResponseDTO;
  */
 @Validated
 public interface PayslipService {
-	
-	/**
-	 * @see PayslipServiceImpl#getPaymentPeriods()
-	 */
-	public List<String> getPaymentPeriods();
-	
+
 	/**
 	 * @see PayslipServiceImpl#calculate(List)
 	 */
-	public List<PayslipResponseDTO> calculate(@Valid List<PayslipRequestDTO> payslipRequests);
+	public PayslipResponsesDTO calculatePayslips(@Valid List<PayslipRequestDTO> payslipRequests);
 }

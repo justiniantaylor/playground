@@ -1,6 +1,8 @@
-package com.playground.payroll.service;
+package com.playground.payroll.service.payslip;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.fail;
 
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
@@ -14,9 +16,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import com.playground.payroll.service.payslip.PayslipService;
 import com.playground.payroll.service.payslip.dto.PayslipRequestDTO;
 import com.playground.payroll.service.payslip.dto.PayslipResponseDTO;
+import com.playground.payroll.service.payslip.dto.PayslipResponsesDTO;
 import com.playground.payroll.util.exception.MissingIncomeTaxPeriodException;
 
 @RunWith(SpringRunner.class)
@@ -25,16 +27,9 @@ public class PayslipServiceTest {
 	
 	@Autowired
     private PayslipService payslipService;
-	       
-	@Test
-	public void testGetPaymentPeriods() {
-		List<String> paymentPeriods = payslipService.getPaymentPeriods();
-		
-		assertEquals(12, paymentPeriods.size());
-	}
 	
 	@Test
-	public void testCalculate() {
+	public void testCalculatePayslips() {
 		List<PayslipRequestDTO> payslipRequests = new ArrayList<PayslipRequestDTO>();
 		PayslipRequestDTO davidRudd = new PayslipRequestDTO();
 		davidRudd.setFirstName("David");
@@ -52,12 +47,12 @@ public class PayslipServiceTest {
 		ryanChen.setPaymentStartDate("01 March 2013 - 31 March 2013");	
 		payslipRequests.add(ryanChen);
 		
-		List<PayslipResponseDTO> payslipResponses = payslipService.calculate(payslipRequests);
+		PayslipResponsesDTO payslipResponses = payslipService.calculatePayslips(payslipRequests);
 		
 		assertNotNull(payslipResponses);
-		assertEquals(2, payslipResponses.size());
+		assertEquals(2, payslipResponses.getPayslipResponses().size());
 		
-		for(PayslipResponseDTO payslipResponse : payslipResponses) {
+		for(PayslipResponseDTO payslipResponse : payslipResponses.getPayslipResponses()) {
 
 			if(payslipResponse.getName().equals(davidRudd.getFirstName() + ' ' + davidRudd.getLastName())) {
 				assertEquals(davidRudd.getPaymentStartDate(), payslipResponse.getPayPeriod());
@@ -88,16 +83,16 @@ public class PayslipServiceTest {
 		davidRudd.setPaymentStartDate("01 March 2013 - 31 March 2013");	
 		payslipRequests.add(davidRudd);
 
-		List<PayslipResponseDTO> payslipResponses = payslipService.calculate(payslipRequests);
+		PayslipResponsesDTO payslipResponses = payslipService.calculatePayslips(payslipRequests);
 		
 		assertNotNull(payslipResponses);
-		assertEquals(1, payslipResponses.size());
+		assertEquals(1, payslipResponses.getPayslipResponses().size());
 		
-		assertEquals(davidRudd.getPaymentStartDate(), payslipResponses.get(0).getPayPeriod());
-		assertEquals(1517, payslipResponses.get(0).getGrossIncome().longValue());
-		assertEquals(0, payslipResponses.get(0).getIncomeTax().longValue());
-		assertEquals(1517, payslipResponses.get(0).getNetIncome().longValue());
-		assertEquals(137, payslipResponses.get(0).getSuperAmount().longValue());
+		assertEquals(davidRudd.getPaymentStartDate(), payslipResponses.getPayslipResponses().get(0).getPayPeriod());
+		assertEquals(1517, payslipResponses.getPayslipResponses().get(0).getGrossIncome().longValue());
+		assertEquals(0, payslipResponses.getPayslipResponses().get(0).getIncomeTax().longValue());
+		assertEquals(1517, payslipResponses.getPayslipResponses().get(0).getNetIncome().longValue());
+		assertEquals(137, payslipResponses.getPayslipResponses().get(0).getSuperAmount().longValue());
 	}
 	
 	@Test
@@ -111,16 +106,16 @@ public class PayslipServiceTest {
 		davidRudd.setPaymentStartDate("01 March 2013 - 31 March 2013");	
 		payslipRequests.add(davidRudd);
 
-		List<PayslipResponseDTO> payslipResponses = payslipService.calculate(payslipRequests);
+		PayslipResponsesDTO payslipResponses = payslipService.calculatePayslips(payslipRequests);
 		
 		assertNotNull(payslipResponses);
-		assertEquals(1, payslipResponses.size());
+		assertEquals(1, payslipResponses.getPayslipResponses().size());
 		
-		assertEquals(davidRudd.getPaymentStartDate(), payslipResponses.get(0).getPayPeriod());
-		assertEquals(15833, payslipResponses.get(0).getGrossIncome().longValue());
-		assertEquals(4921, payslipResponses.get(0).getIncomeTax().longValue());
-		assertEquals(10912, payslipResponses.get(0).getNetIncome().longValue());
-		assertEquals(1425, payslipResponses.get(0).getSuperAmount().longValue());
+		assertEquals(davidRudd.getPaymentStartDate(), payslipResponses.getPayslipResponses().get(0).getPayPeriod());
+		assertEquals(15833, payslipResponses.getPayslipResponses().get(0).getGrossIncome().longValue());
+		assertEquals(4921, payslipResponses.getPayslipResponses().get(0).getIncomeTax().longValue());
+		assertEquals(10912, payslipResponses.getPayslipResponses().get(0).getNetIncome().longValue());
+		assertEquals(1425, payslipResponses.getPayslipResponses().get(0).getSuperAmount().longValue());
 	}
 	
 	@Test(expected=ConstraintViolationException.class)
@@ -129,7 +124,7 @@ public class PayslipServiceTest {
 		PayslipRequestDTO davidRudd = new PayslipRequestDTO();
 		payslipRequests.add(davidRudd);
 		
-		payslipService.calculate(payslipRequests);
+		payslipService.calculatePayslips(payslipRequests);
 	}
 	
 	@Test(expected=MissingIncomeTaxPeriodException.class)
@@ -143,7 +138,7 @@ public class PayslipServiceTest {
 		davidRudd.setPaymentStartDate("01 March 2017 - 31 March 2017");
 		payslipRequests.add(davidRudd);
 		
-		payslipService.calculate(payslipRequests);
+		payslipService.calculatePayslips(payslipRequests);
 	}
 	
 	@Test(expected=DateTimeParseException.class)
@@ -157,7 +152,7 @@ public class PayslipServiceTest {
 		davidRudd.setPaymentStartDate("01 March - 31 March");
 		payslipRequests.add(davidRudd);
 		
-		payslipService.calculate(payslipRequests);
+		payslipService.calculatePayslips(payslipRequests);
 	}
 }
 

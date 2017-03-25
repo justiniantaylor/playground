@@ -12,6 +12,8 @@ import java.time.format.DateTimeFormatter;
  */
 public class DateTimeUtils {
 	
+	public static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("dd MMMM uuuu");
+	
 	/**
 	 * This will format/combine two dates (a range) using the supplied formatter and separator.
 	 * 
