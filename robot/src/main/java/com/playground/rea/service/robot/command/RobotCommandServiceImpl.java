@@ -29,7 +29,7 @@ public class RobotCommandServiceImpl implements RobotCommandService {
 	 * The place command can be issued for a robot with its current table, or with a custom table (with whatever dimensions), 
 	 * or a default table will be created for it.
 	 * 
-	 * @param			the robot to issue the command for
+	 * @param robot		the robot to issue the command for
 	 * @param x   		the x position on the table top.
 	 * @param y   		the y position on the table top.
 	 * @param direction the direction the robot should be facing on the table top.
