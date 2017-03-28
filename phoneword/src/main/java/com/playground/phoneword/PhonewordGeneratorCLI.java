@@ -16,7 +16,7 @@ import com.playground.phoneword.directory.PhoneNumber;
 /**
  * Command Line Interface for the Aconex phoneword generator.
  * <p>
- * Usage: java -jar phoneword.jar [-d "dictionaryFile"] "numberFile1" "numberFile2"
+ * Usage: java -jar phoneword.jar [-d "dictionaryFile"] "phoneDirectoryFile1" "phoneDirectoryFile2"
  * 
  * @author	Justin Taylor
  * @version	%I%, %G%
@@ -24,7 +24,7 @@ import com.playground.phoneword.directory.PhoneNumber;
  */
 public class PhonewordGeneratorCLI {
 	
-	private static final String HELP = "Usage: java -jar phoneword.jar [-d \"dictionaryFile\"] \"numberFile1\" \"numberFile2\"";
+	private static final String HELP = "Usage: java -jar phoneword.jar [-d \"dictionaryFile\"] \"phoneDirectoryFile1\" \"phoneDirectoryFile2\"";
 	private static final String EXIT = "exit";
 	
 	/**
