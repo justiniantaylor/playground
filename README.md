@@ -1,4 +1,4 @@
-# playground
+# Playground
 
 This playground repository contains all recent code assignments.
 
@@ -12,7 +12,7 @@ This playground repository contains all recent code assignments.
 * Spring Data, JPA and Hibernate
 * JUnit
 
-* [Toy Robot Simulator](https://github.com/justiniantaylor/playground/tree/master/robot)
+## [Toy Robot Simulator](https://github.com/justiniantaylor/playground/tree/master/robot)
 * Java 8
 * Spring Boot
 * Angular 1
@@ -21,6 +21,6 @@ This playground repository contains all recent code assignments.
 * Spring Data, JPA and Hibernate
 * JUnit
 
-* [1-800 Coding Challenge](https://github.com/justiniantaylor/playground/tree/master/phoneword)
+## [1-800 Coding Challenge](https://github.com/justiniantaylor/playground/tree/master/phoneword)
 * Java 8
 * JUnit
