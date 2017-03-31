@@ -1,6 +1,6 @@
 # Playground
 
-This playground repository contains all recent code assignments.
+This repository contains various recently completed code assignments or exercises.
 
 ### [Payroll payslip calculation](https://github.com/justiniantaylor/playground/tree/master/payroll)
 Employee payslip calculation based on income tax tables and super annuation.
