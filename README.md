@@ -10,8 +10,8 @@ Employee payslip calculation based on income tax tables and super annuation.
 * Angular 1
 * Angular Material
 * Rest Web Service with HATEOAS
-* Spring Data, JPA and Hibernate
-* JUnit
+* H2, Spring Data, JPA and Hibernate
+* JUnit & Maven
 
 ## [Toy Robot Simulator](https://github.com/justiniantaylor/playground/tree/master/robot)
 Simulation of a toy robot moving on a square tabletop.
@@ -22,10 +22,10 @@ Simulation of a toy robot moving on a square tabletop.
 * Angular Material
 * Rest Web Service with HATEOAS
 * Spring Data, JPA and Hibernate
-* JUnit
+* JUnit & Maven
 
 ## [1-800 Coding Challenge](https://github.com/justiniantaylor/playground/tree/master/phoneword)
 Generates possible phoneword matches for a list of provided phone numbers.
 
 * Java 8
-* JUnit
+* JUnit & Maven

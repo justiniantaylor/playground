@@ -1,5 +1,8 @@
-1-800-CODING-CHALLENGE
+# 1-800-CODING-CHALLENGE
 ======================
+
+## Requirements
+
 Many companies like to list their phone numbers using the letters printed on most
 telephones. This makes the number easier to remember for customers. An example may
 be 1-800-FLOWERS
@@ -44,3 +47,34 @@ Digit | Characters
 7 | P Q R S
 8 | T U V
 9 | W X Y Z
+
+## Solution
+
+### Tech
+There was the requirement to not used any 3rd party libraries for this (besides testing libs) and be able to run from command line & STDIN, so I only used the following:
+* Java 8
+* JUnit & Maven (For testing and building the jar in the root named aconex.zip, please see instructions)
+
+### Approach
+1. I started by creating a basic conceptual model, in which the concepts were the Dictionary, Phone Directory, Phone Number and Phoneword.
+2. I then stubbed out the methods for these objects, and then wired these methods into a CLI class for the command line, as well as the JUnit so I could test as I progressed.
+3. I then added specific test cases to my test data and unit tests that would form the basis for testing my logic through the development process.
+4. I then added all the method logic into the methods and tested and bugfixed until my tests passed.
+5. I then logged in and started interacting with the command line and did more human / user acceptance testing until I was happy with the result.
+
+### Design
+* I used Java 8, Junit 4 for testing and Maven for building my executable jar.
+* The code design is fairly basic, there is a CLI class which is used for inputting and printing responses for phoneword generation, either by command lines or stdin console.
+* There is a dictionary class which holds the location to a validated phone directory file and with finding matching words in the dictionary files for requested numbers.
+* There is a phone directory class which holds the location to a validated phone directory file.
+* There is a phone number class which holds the number as well as any phonewords that may have been generated for that number.
+* Then finally there is then a phoneword generator class which is the main class that deals with extracting numbers from a phone directory and generating phonewords for these number and returning the results.
+
+### Instructions
+
+To execute the phoneword-1.0.0.jar packaged with this zip file, please make sure you have a valid JRE on your path and execute this command in the jar folder:
+java -jar phoneword.jar [-d "dictionaryFile"] "phoneDirectoryFile1" "phoneDirectoryFile2" 
+
+Should you not specify the dictionary file, the application will use the default dictionary file in the current folder that would have been unzipped with the jar file.
+Should you not specify any phone directory files the command line will prompt for them, should you wish to exit from these prompts, please type exit.
+
