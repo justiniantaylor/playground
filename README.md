@@ -2,7 +2,7 @@
 
 This playground repository contains all recent code assignments.
 
-## [Payroll payslip calculation](https://github.com/justiniantaylor/playground/tree/master/payroll)
+### [Payroll payslip calculation](https://github.com/justiniantaylor/playground/tree/master/payroll)
 Employee payslip calculation based on income tax tables and super annuation.
 
 * Java 8
@@ -13,7 +13,7 @@ Employee payslip calculation based on income tax tables and super annuation.
 * H2, Spring Data, JPA and Hibernate
 * JUnit & Maven
 
-## [Toy Robot Simulator](https://github.com/justiniantaylor/playground/tree/master/robot)
+### [Toy Robot Simulator](https://github.com/justiniantaylor/playground/tree/master/robot)
 Simulation of a toy robot moving on a square tabletop.
 
 * Java 8
@@ -24,7 +24,7 @@ Simulation of a toy robot moving on a square tabletop.
 * Spring Data, JPA and Hibernate
 * JUnit & Maven
 
-## [1-800 Coding Challenge](https://github.com/justiniantaylor/playground/tree/master/phoneword)
+### [1-800 Coding Challenge](https://github.com/justiniantaylor/playground/tree/master/phoneword)
 Generates possible phoneword matches for a list of provided phone numbers.
 
 * Java 8
