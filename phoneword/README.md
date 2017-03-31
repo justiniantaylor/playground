@@ -28,12 +28,12 @@ possible word encoding per line. For example, if your program is fed the number:
 
 2255.63
 
-One possible line of output is
+According to my dictionary, one possible line of output is
+
 CALL-ME
 
-According to my dictionary.
-
 The number encoding on the phone the program will use is:
+
 Digit | Characters
 ------------ | -------------
 2 | A B C
