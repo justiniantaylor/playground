@@ -114,8 +114,8 @@ I knew that only a command line tool was required but I decided to put a very ba
 7. I then interacted with the web command line interface and did more human / user acceptance testing until I was happy with the result.
 
 ### Design
-* The code design is fairly basic, there is a robot which can be place on a table, the table may have any dimensions but default to 5 x 5, so a robot has a table that it has been placed one, but they can both exist without each other.
-* There is a robot service which is used to instantiate and return a new robot object.
+* The code design is fairly basic, there is a robot which can be placed on a table, the table may have any dimensions but default to 5 x 5, so a robot has a table that it has been placed one, but they can both exist without each other, or a robot can be moved to another table or the dimensions of the table can be amended at runtime.
+* There is a robot service which is used to instantiate and return a new robot object with the default settings.
 * There is then a robot command service which is used to issue commands for a robot, this is done by calling the relevant method on this service and supplying the robot you wish to command. This applies all the logic rules for the robot based on its variables (ie its location, direction and table size it has been placed on) in a single stateless location.
 
 ### Instructions
