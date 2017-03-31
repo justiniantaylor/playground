@@ -70,10 +70,9 @@ There was the requirement to not used any 3rd party libraries for this (besides 
 
 ### Instructions
 
-To execute the phoneword-1.0.0.jar packaged with this zip file, please make sure you have a valid JRE on your path and execute this command in the jar folder:
+As this is a commaned line application, in order to execute the phoneword-1.0.0.jar packaged with this zip file, please download, unzip the file and make sure you have a valid JRE on your path and execute this command in the jar folder:
 
 java -jar phoneword.jar [-d "dictionaryFile"] "phoneDirectoryFile1" "phoneDirectoryFile2" 
 
 * Should you not specify the dictionary file, the application will use the default dictionary file in the current folder that would have been unzipped with the jar file.
 * Should you not specify any phone directory files the command line will prompt for them, should you wish to exit from these prompts, please type exit.
-
