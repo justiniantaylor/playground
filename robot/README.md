@@ -120,4 +120,4 @@ I knew that only a command line tool was required but I decided to put a very ba
 
 ### Instructions
 
-Deployed on AWS: http://sample-env-1.z3tsumgpxk.us-west-2.elasticbeanstalk.com/
+Deployed on AWS: [Toy Robot Web Interface](http://sample-env-1.z3tsumgpxk.us-west-2.elasticbeanstalk.com/)
