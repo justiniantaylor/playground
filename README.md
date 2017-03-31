@@ -12,6 +12,7 @@ Employee payslip calculation based on income tax tables and super annuation.
 * Rest Web Service with HATEOAS
 * H2, Spring Data, JPA and Hibernate
 * JUnit & Maven
+* Amazon AWS
 
 ### [Toy Robot Simulator](https://github.com/justiniantaylor/playground/tree/master/robot)
 Simulation of a toy robot moving on a square tabletop.
@@ -23,6 +24,7 @@ Simulation of a toy robot moving on a square tabletop.
 * Rest Web Service with HATEOAS
 * Spring Data, JPA and Hibernate
 * JUnit & Maven
+* Amazon AWS
 
 ### [1-800 Coding Challenge](https://github.com/justiniantaylor/playground/tree/master/phoneword)
 Generates possible phoneword matches for a list of provided phone numbers.
