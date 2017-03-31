@@ -111,7 +111,8 @@ I knew that only a command line tool was required but I decided to put a very ba
 4. I then added all the method logic into the methods and tested and bugfixed until my tests passed.
 5. I then went and added more integration (sequence of events) type tests in JUnit, these test cases were drawn from the original requirement an asserted based on given outcomes.
 6. I then implemented a REST service and a simple web interface in order to issue commands from and online tool so that the assessors did not require any local setup.
-7. I then interacted with the web command line interface and did more human / user acceptance testing until I was happy with the result.
+7. I then created some more mock tests in JUnit to test the rest service.
+8. I then interacted with the web command line interface and did more human / user acceptance testing until I was happy with the result.
 
 ### Design
 * The code design is fairly basic, there is a robot which can be placed on a table, the table may have any dimensions but default to 5 x 5, so a robot has a table that it has been placed one, but they can both exist without each other, or a robot can be moved to another table or the dimensions of the table can be amended at runtime.
