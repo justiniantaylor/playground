@@ -42,3 +42,7 @@ As part of your solution:
 * We value good design and test, it’s important to us
 
 ## Solution
+
+### Instructions
+
+Deployed on AWS: [Payslip Calculator](http://sample-env.m9n5m2yn2r.us-west-2.elasticbeanstalk.com/)
