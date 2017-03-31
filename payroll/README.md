@@ -1,5 +1,6 @@
-Employee Monthly Payslip
-===================
+# Employee Monthly Payslip
+
+## Requirement
 
 When I input the employee's details: first name, last name, annual salary(positive integer) and super rate(0% - 50% inclusive), payment start date, the program should generate payslip information with name, pay period, gross income, income tax, net income and super. The calculation details will be the following: 
 * pay period = per calendar month
@@ -8,8 +9,7 @@ When I input the employee's details: first name, last name, annual salary(positi
 * net income = gross income - income tax 
 * super = gross income x super rate
 
-Notes:
-------
+### Notes:
 All calculation results should be rounded to the whole dollar. If >= 50 cents round up to the next dollar increment, otherwise round down. The following rates for 2012-13 apply from 1 July 2012. Taxable income Tax on this income 
 * 0 ‐ $18,200 Nil
 * $18,201 ‐ $37,000 19c for each $1 over $18,200
@@ -17,8 +17,7 @@ All calculation results should be rounded to the whole dollar. If >= 50 cents ro
 * $80,001 ‐ $180,000 $17,547 plus 37c for each $1 over $80,000
 * $180,001 and over $54,547 plus 45c for each $1 over $180,000
 
-Example
--------
+### Example
 Data 
 Employee annual salary is 60,050, super rate is 9%, how much will this employee be paid for the month of March?
 * pay period = Month of March (01 March to 31 March) 
@@ -41,3 +40,5 @@ As part of your solution:
 * List any assumptions that you have made in order to solve this problem.
 * Provide instruction on how to run the application 
 * We value good design and test, it’s important to us
+
+## Solution
