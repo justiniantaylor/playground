@@ -59,7 +59,7 @@ There was the requirement to not used any 3rd party libraries for this (besides 
 2. I then stubbed out the methods for these objects, and then wired these methods into a CLI class for the command line, as well as the JUnit so I could test as I progressed.
 3. I then added specific test cases to my test data and unit tests that would form the basis for testing my logic through the development process.
 4. I then added all the method logic into the methods and tested and bugfixed until my tests passed.
-5. I then logged in and started interacting with the command line and did more human / user acceptance testing until I was happy with the result.
+5. I then logged in and started interacting with the command line and did more human / user acceptance testing  and confirmed I was happy with the final result.
 
 ### Design
 * The code design is fairly basic, there is a CLI class which is used for inputting and printing responses for phoneword generation, either by command lines or stdin console.

@@ -105,14 +105,15 @@ I knew that only a command line tool was required but I decided to put a very ba
 * Amazon AWS
 
 ### Approach
-1. I started by creating a very basic conceptual model, in which the concepts were the Robot and the Table and then created the model objects with relations and their variables.
-2. I then stubbed a stateless service to create an instance of a robot and then another to issue commands for a a supplied robot based on the above requirements.
-3. I then wired these service method into JUnit tests so I could test as I progressed.
-4. I then added all the method logic into the methods and tested and bugfixed until my tests passed.
+1. I started by creating a very basic conceptual model, in which the concepts were the Robot and the Table and then created the model objects with their attributes and relations.
+2. I then stubbed a service component to issue commands for a supplied robot based on the above requirements.
+3. I then wired this service into JUnit tests so I could test as I progressed.
+4. I then added all the method logic into the methods and tested and bug fixed as I went until all my tests passed.
 5. I then went and added more integration (sequence of events) type tests in JUnit, these test cases were drawn from the original requirement an asserted based on given outcomes.
-6. I then implemented a REST service and a simple web interface in order to issue commands from and online tool so that the assessors did not require any local setup.
-7. I then created some more mock tests in JUnit to test the rest service.
-8. I then interacted with the web command line interface and did more human / user acceptance testing until I was happy with the result.
+6  I then create a rest service for the robot which allowed you to create a new instance of a robot, there was no logic to this so the rest controller could interface with the data repository directly instead of a service component.
+7. I then implemented a REST service for the robot command service and a simple web interface in order to issue commands from an online interface so that the assessors did not require any local setup.
+8. I then created some mock tests in JUnit to test these two new rest services (RobotController & RobotCommandController).
+9. I then interacted with the web command line interface and did more human / user acceptance testing and confirmed I was happy with the final result.
 
 ### Design
 * The code design is fairly basic, there is a robot which can be placed on a table, the table may have any dimensions but default to 5 x 5, both can exist without each other, and a robot can be moved to another table or the dimensions of the table can be amended at any time.
