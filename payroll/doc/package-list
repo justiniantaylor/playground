@@ -2,7 +2,8 @@ com.playground.payroll
 com.playground.payroll.controller
 com.playground.payroll.domain
 com.playground.payroll.repository
-com.playground.payroll.service
+com.playground.payroll.service.payment.period
+com.playground.payroll.service.payment.period.dto
 com.playground.payroll.service.payslip
 com.playground.payroll.service.payslip.dto
 com.playground.payroll.util

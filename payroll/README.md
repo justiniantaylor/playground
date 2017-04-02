@@ -54,9 +54,7 @@ As part of your solution:
 * Amazon AWS
 
 ### Setup Instructions
-
 There are no set up instruction as the application is deployed on AWS: 
 [Payslip Calculator Web Application](http://sample-env.m9n5m2yn2r.us-west-2.elasticbeanstalk.com/)
 
-The code has been documented with javadocs and exists on Github at:
-[Payslip Calculator Source](https://github.com/justiniantaylor/playground/tree/master/payroll)
+The code has been documented with Javadocs and the source code exists on Github at: [Source Code](https://github.com/justiniantaylor/playground/tree/master/payroll)

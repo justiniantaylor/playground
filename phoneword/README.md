@@ -54,12 +54,12 @@ There was the requirement to not used any 3rd party libraries for this (besides 
 * Java 8
 * JUnit & Maven (For testing and building the jar in the root named aconex.zip, please see instructions)
 
-### Instructions
-Download the [aconex.zip](https://github.com/justiniantaylor/playground/blob/master/phoneword/aconex.zip) and unzip into a location of your choice, in this zip file is the phoneword-1.0.0.jar, please make sure you have a valid JRE on your path and then open your command line navigate to this directory and execute this command:
+### Setup Instructions
+Download the [aconex.zip](https://github.com/justiniantaylor/playground/blob/master/phoneword/aconex.zip) and unzip into a location of your choice, in this zip file is the phoneword-1.0.0.jar, please make sure you have a valid JRE on your path and then open your command line, navigate to this directory and execute this command:
 
 java -jar phoneword.jar [-d "dictionaryFile"] "phoneDirectoryFile1" "phoneDirectoryFile2" 
 
 * Should you not specify the dictionary file, the application will use the default dictionary file in the current folder that would have been unzipped with the jar file.
 * Should you not specify any phone directory files the command line will prompt for them, should you wish to exit from these prompts, please type exit.
 
-The code has been documented with javadocs and exists in Github at: [1800 Coding Challenge Source](https://github.com/justiniantaylor/playground/tree/master/phoneword)
+The code has been documented with Javadocs and the source code exists on Github at: [Source Code](https://github.com/justiniantaylor/playground/tree/master/phoneword)
