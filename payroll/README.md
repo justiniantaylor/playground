@@ -43,6 +43,20 @@ As part of your solution:
 
 ## Solution
 
-### Instructions
+### Stack
+* Java 8
+* Spring Boot
+* Angular 1
+* Angular Material
+* Rest Web Service with HATEOAS
+* H2, Spring Data, JPA and Hibernate
+* JUnit & Maven
+* Amazon AWS
 
-Deployed on AWS: [Payslip Calculator](http://sample-env.m9n5m2yn2r.us-west-2.elasticbeanstalk.com/)
+### Setup Instructions
+
+There are no set up instruction as the application is deployed on AWS: 
+[Payslip Calculator Web Application](http://sample-env.m9n5m2yn2r.us-west-2.elasticbeanstalk.com/)
+
+The code has been documented with javadocs and exists in Github at:
+[Payslip Calculator Source](https://github.com/justiniantaylor/playground/tree/master/payroll)
