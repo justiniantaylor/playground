@@ -92,12 +92,11 @@ movement of the toy robot.
 ## Solution
 
 ### Stack
-
 I knew that only a command line tool was required but I decided to put a very basic web command line tool together so the assessors did not have to do any set up to review the functioning of the application.
 
 * Java 8
 * Spring Boot
-* Angular 1
+* AngularJS
 * Angular Material
 * Rest Web Service with HATEOAS
 * Spring Data, JPA and Hibernate

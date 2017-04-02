@@ -46,7 +46,7 @@ As part of your solution:
 ### Stack
 * Java 8
 * Spring Boot
-* Angular 1
+* AngularJS
 * Angular Material
 * Rest Web Service with HATEOAS
 * H2, Spring Data, JPA and Hibernate
