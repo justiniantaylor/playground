@@ -54,25 +54,12 @@ There was the requirement to not used any 3rd party libraries for this (besides 
 * Java 8
 * JUnit & Maven (For testing and building the jar in the root named aconex.zip, please see instructions)
 
-### Approach
-1. I started by creating a basic conceptual model, in which the concepts were the Dictionary, Phone Directory, Phone Number and Phoneword.
-2. I then stubbed out the methods for these objects, and then wired these methods into a CLI class for the command line, as well as the JUnit so I could test as I progressed.
-3. I then added specific test cases to my test data and unit tests that would form the basis for testing my logic through the development process.
-4. I then added all the method logic into the methods and tested and bugfixed until my tests passed.
-5. I then logged in and started interacting with the command line and did more human / user acceptance testing  and confirmed I was happy with the final result.
-
-### Design
-* The code design is fairly basic, there is a CLI class which is used for inputting and printing responses for phoneword generation, either by command lines or stdin console.
-* There is a dictionary class which holds the location to a validated phone directory file and with finding matching words in the dictionary files for requested numbers.
-* There is a phone directory class which holds the location to a validated phone directory file.
-* There is a phone number class which holds the number as well as any phonewords that may have been generated for that number.
-* Then finally there is then a phoneword generator class which is the main class that deals with extracting numbers from a phone directory and generating phonewords for these number and returning the results.
-
 ### Instructions
-
-As this is a commaned line application, in order to execute the phoneword-1.0.0.jar packaged with this zip file, please download, unzip the file and make sure you have a valid JRE on your path and execute this command in the jar folder:
+Download the [aconex.zip](https://github.com/justiniantaylor/playground/blob/master/phoneword/aconex.zip) and unzip into a location of your choice, in this zip file is the phoneword-1.0.0.jar, please make sure you have a valid JRE on your path and then open your command line navigate to this directory and execute this command:
 
 java -jar phoneword.jar [-d "dictionaryFile"] "phoneDirectoryFile1" "phoneDirectoryFile2" 
 
 * Should you not specify the dictionary file, the application will use the default dictionary file in the current folder that would have been unzipped with the jar file.
 * Should you not specify any phone directory files the command line will prompt for them, should you wish to exit from these prompts, please type exit.
+
+The code has been documented with javadocs and exists in Github at: [1800 Coding Challenge Source](https://github.com/justiniantaylor/playground/tree/master/phoneword)
