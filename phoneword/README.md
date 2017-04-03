@@ -57,7 +57,7 @@ There was the requirement to not used any 3rd party libraries for this (besides 
 ### Setup Instructions
 Download the [aconex.zip](https://github.com/justiniantaylor/playground/blob/master/phoneword/aconex.zip) and unzip into a location of your choice, in this zip file is the phoneword-1.0.0.jar, please make sure you have a valid JRE on your path and then open your command line, navigate to this directory and execute this command:
 
-java -jar phoneword.jar [-d "dictionaryFile"] "phoneDirectoryFile1" "phoneDirectoryFile2" 
+java -jar phoneword-1.0.0.jar [-d "dictionaryFile"] "phoneDirectoryFile1" "phoneDirectoryFile2" 
 
 * Should you not specify the dictionary file, the application will use the default dictionary file in the current folder that would have been unzipped with the jar file.
 * Should you not specify any phone directory files the command line will prompt for them, should you wish to exit from these prompts, please type exit.
