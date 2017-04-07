@@ -1,17 +1,19 @@
 <!doctype html>
 <html lang="en">
 <head>
-	<title>REA Toy Robot Assignment</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta charset="utf-8"/>
-	
-	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-	<link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.css">
-	<link rel="stylesheet" href="css/app.css">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>REA Toy Robot Assignment</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="bower_components/angular-material/angular-material.min.css">
+    <link rel="stylesheet" href="app/app.css">
 </head>
 <body ng-app="robotApp" ng-cloak>
 
-	<div ng-controller="robotController" class="md-padding" ng-cloak="">
+	<div ng-controller="mainController" class="md-padding" ng-cloak="">
 		<md-content class="md-padding" layout-xs="column" layout="row" layout-align="center center">
 			<div flex-xs flex-gt-sm="40" layout="column" layout-align="center center">
 				<md-card class="card-40-center"> 
@@ -32,7 +34,7 @@
 				            <div layout="row" flex>
 					            <md-input-container class="md-block" flex>
 									<label>Command</label> 									
-									<input ng-model="commandString" placeholder="{{commandList}}" ng-keypress="($event.charCode==13)? sendCommand() : return"> 
+									<input ng-model="commandString" placeholder="{{commandPlaceholder}}" ng-keypress="($event.charCode==13)? sendCommand() : return"> 
 								</md-input-container>												 
 							</div>
 				        </div>
@@ -47,25 +49,18 @@
 		</md-content>
 	</div>
 
-	<!-- Angular Material requires Angular.js Libraries -->
-	<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
-	<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-route.min.js"></script>
-	<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-resource.min.js"></script>
-	<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-animate.min.js"></script>
-	<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-aria.min.js"></script>
-	<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-messages.min.js"></script>
-	<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-sanitize.min.js"></script>
-	
-	<!-- Angular Material Library -->
-	<script src="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.js"></script>
-	
-	<!-- Your application services  -->
-	<script src="js/service/services.js"></script>
-	
-	<!-- Your application controller  -->
-	<script src="js/controller/controllers.js"></script>
-	
-	<!-- Your application bootstrap  -->
-	<script src="js/app.js"></script>
+	<script src="bower_components/angular/angular.min.js"></script>
+	<script src="bower_components/angular-route/angular-route.min.js"></script>			
+	<script src="bower_components/angular-resource/angular-resource.min.js"></script>
+	<script src="bower_components/angular-aria/angular-aria.min.js"></script>
+	<script src="bower_components/angular-messages/angular-messages.min.js"></script>
+	<script src="bower_components/angular-sanitize/angular-sanitize.min.js"></script>
+	<script src="bower_components/angular-animate/angular-animate.min.js"></script>
+ 	<script src="bower_components/angular-material/angular-material.min.js"></script>
+
+	<script src="app/constant/constants.js"></script>
+	<script src="app/service/services.js"></script>
+	<script src="app/controller/controllers.js"></script>
+	<script src="app/app.js"></script>
 </body>
 </html>
