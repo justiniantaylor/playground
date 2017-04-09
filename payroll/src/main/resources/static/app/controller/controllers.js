@@ -3,11 +3,10 @@ var app = angular.module('payroll-controller', []);
 app.controller('mainController', ['$scope', '$mdToast', 'paymentPeriodService', 'payslipCalculateService',function ($scope, $mdToast, paymentPeriodService, payslipCalculateService) {
 
 	$scope.paymentPeriods = getPaymentPeriods();
-	
+	$scope.payslipsHeaders = ["Name", "Pay Period", "Gross Income", "Income Tax", "Net Income", "Super Amount"];	
 	//I have only set this data below for assisting the assignment assessor, this would not be done in a real world scenario
 	$scope.payslipRequests = [{firstName: "David", lastName: "Rudd", annualSalary: 60050, superRate: "9%", paymentStartDate: '01 March 2013 - 31 March 2013'},
 							  {firstName: "Ryan", lastName: "Chen", annualSalary: 120000, superRate: "10%", paymentStartDate: '01 March 2013 - 31 March 2013'}];
-	
 	$scope.payslipResponses = []
 
 	$scope.add = function () {
@@ -18,17 +17,19 @@ app.controller('mainController', ['$scope', '$mdToast', 'paymentPeriodService', 
 		$scope.payslipRequests.splice(index, 1);
 	};
 	
-	$scope.close = function () {
-		$scope.payslipResponses = [];
-	};	
-	
-	$scope.checkPercentage = function (value) {
-		value = value + "%"
-	};	
+	function getPaymentPeriods() {
+		paymentPeriodService.findAll()
+        .then(function (response) {                	
+        	$scope.paymentPeriods = response.data.paymentPeriods;
+        }, function(error) {
+            $scope.status = 'Unable to retrieve the available payment periods: ' + error.message;
+        });
+	};
 	
 	$scope.calculate = function () {
 		payslipCalculateService.calculate($scope.payslipRequests)
         .then(function (response) {
+        	console.log(response);
             $scope.payslipResponses = response.data.payslipResponses;
             
             var pinTo = $scope.getToastPosition();
@@ -42,21 +43,10 @@ app.controller('mainController', ['$scope', '$mdToast', 'paymentPeriodService', 
             $scope.status = 'Unable to insert customer: ' + error.message;
         });
 	};
-	
-	function getPaymentPeriods() {
-		paymentPeriodService.findAll()
-        .then(function (response) {            	
-        	$scope.paymentPeriods = response.data.paymentPeriods;
-        }, function(error) {
-            $scope.status = 'Unable to retrieve the available payment periods: ' + error.message;
-        });
-	};
-	
-	$scope.getPayslips = function () {
-		return $scope.payslipResponses;
-	};
-	
-	$scope.getPayslipsHeader = function () {return ["Name", "Pay Period", "Gross Income", "Income Tax", "Net Income", "Super Amount"]};
+
+	$scope.closeCalculations = function () {
+		$scope.payslipResponses = [];
+	};	
 	
 	var last = {
         bottom: false,

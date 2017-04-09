@@ -9,7 +9,7 @@
 	<packaging>war</packaging>
 
 	<name>payroll</name>
-	<description>The project used for the MYOB payslip assignment.</description>
+	<description>The MYOB payslip assignment.</description>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>

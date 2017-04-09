@@ -14,6 +14,7 @@ module.exports = function(config) {
       'bower_components/angular-sanitize/angular-sanitize.min.js',
       'bower_components/angular-animate/angular-animate.min.js',
       'bower_components/angular-material/angular-material.min.js',
+      'bower_components/ng-csv/build/ng-csv.min.js',
    	
       'app/**/*.js'
     ],

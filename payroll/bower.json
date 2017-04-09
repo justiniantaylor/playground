@@ -1,0 +1,23 @@
+{
+  "name": "payroll",
+  "description": "The MYOB payslip assignment.",
+  "version": "1.0.0",
+  "homepage": "http://sample-env.m9n5m2yn2r.us-west-2.elasticbeanstalk.com/",
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "angular": "~1.5.11",
+    "angular-resource": "~1.5.11",
+    "angular-animate": "~1.5.11",
+    "angular-aria": "~1.5.11",
+    "angular-messages": "~1.5.11",
+    "angular-sanitize": "~1.5.11",
+    "angular-route": "~1.5.11",
+    "angular-loader": "~1.5.11",
+    "angular-mocks": "~1.5.11",
+    "angular-material": "1.1.0"
+  },
+  "resolutions": {
+    "angular": "~1.5.11"
+  }
+}

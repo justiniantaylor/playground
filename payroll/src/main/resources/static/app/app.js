@@ -1,5 +1,5 @@
 (function () {
-	var app = angular.module('payrollApp', ['ngMaterial', 'ngSanitize', 'ngCsv', 'payroll-controller', 'payroll-service', 'payroll-directive']);
+	var app = angular.module('payrollApp', ['ngMaterial', 'ngSanitize', 'ngCsv', 'payroll-controller', 'payroll-service']);
 	
 	app.config(function($mdIconProvider) {
 		 $mdIconProvider

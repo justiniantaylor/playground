@@ -13,7 +13,7 @@ mvnw
 mvnw.cmd
 .target
 node_modules
-src\main\resources\static\bower_components
+src/main/resources/static/bower_components
 
 ### IntelliJ IDEA ###
 .idea
