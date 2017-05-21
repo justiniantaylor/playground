@@ -14,14 +14,30 @@ You can assume that GPS, Routing Maps, SMS & Push Notification Services are prov
 
 You’ll also want to give our Pizzeria an awesome name, then share with us on GitHub.
 
+## Technology
+
+- Java
+- Spring Boot
+- Spring Data
+- Spring Cloud Zuul
+- Angular
+- Material
+- JUnit
+
 ## Conceptual Model
+
+I began with building a basic conceptual model below.
 
 ![Screenshot](concepts.png)
 
 ## Basic Architecture
 
+I decided to use an API Gateway pattern so that I could have a single entry point for all clients. I also chose an edge architecture so that the API Gateway could be deployed in a DMZ in order to protect all other resources behind a firewall.
+
 ![Screenshot](architecture.png)
 
 ## Order Process
+
+An assumption was made that the payment was made before order was placed, either online or in store.
 
 ![Screenshot](process.png)
