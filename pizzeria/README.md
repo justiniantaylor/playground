@@ -14,14 +14,14 @@ You can assume that GPS, Routing Maps, SMS & Push Notification Services are prov
 
 You’ll also want to give our Pizzeria an awesome name, then share with us on GitHub.
 
-##Conceptual Model
+## Conceptual Model
 
 ![Screenshot](concepts.png)
 
-##Basic Architecture
+## Basic Architecture
 
 ![Screenshot](architecture.png)
 
-##Order Process
+## Order Process
 
 ![Screenshot](process.png)
