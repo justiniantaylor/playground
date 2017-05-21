@@ -1,2 +1,2 @@
-controllers.controller('order-controller', ['$scope', '$mdToast', 'menuService', 'menuItemService',function ($scope, $mdToast, menuService, menuItemService) {
+controllers.controller('order-controller', ['$scope', '$mdToast', 'orderService', 'orderItemService',function ($scope, $mdToast, orderService, orderItemService) {
 }]);

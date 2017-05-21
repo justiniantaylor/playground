@@ -1,2 +1,2 @@
-controllers.controller('delivery-controller', ['$scope', '$mdToast', 'menuService', 'menuItemService',function ($scope, $mdToast, menuService, menuItemService) {
+controllers.controller('delivery-controller', ['$scope', '$mdToast', 'deliveryService',function ($scope, $mdToast, deliveryService) {
 }]);
