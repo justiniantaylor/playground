@@ -34,6 +34,8 @@ I began with building a basic conceptual model below.
 
 I decided to use an API Gateway pattern so that I could have a single entry point for all clients for all services in my API (whether micro service or not). I also chose an edge architecture so that the API Gateway could be deployed in a DMZ in order to protect all other resources behind a firewall.
 
+The services are all packaged into a monolith application, but as we are using spring boot as well as a API gateway we could very easily seperate the services out into their own microservices projects that could be deployed independently.
+
 ![Screenshot](architecture.png)
 
 ## Order Process
