@@ -5,3 +5,5 @@
 /Servers/
 .classpath
 .project
+.recommenders
+bin

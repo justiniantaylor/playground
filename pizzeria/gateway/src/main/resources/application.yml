@@ -1,0 +1,14 @@
+security:
+  sessions: ALWAYS
+spring:
+  session:
+    store-type: redis
+zuul:
+  routes:
+    resource:
+      url: http://localhost:9000
+      sensitive-headers:
+      
+logging:
+  level:
+    root: WARN      

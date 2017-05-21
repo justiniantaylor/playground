@@ -1,0 +1,20 @@
+spring:
+  jpa:
+    hibernate: 
+      ddl-auto: create-drop
+  session:
+    store-type: redis
+  jackson:
+    serialization:
+      WRITE_DATES_AS_TIMESTAMPS: false
+        
+security:
+  sessions: NEVER
+  
+server:
+  port: 9000
+  address: 127.0.0.1
+  
+logging:
+  level:
+    root: WARN

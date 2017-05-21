@@ -1,0 +1,85 @@
+<div ng-controller="menu-controller" ng-cloak class="ng-cloak">
+	<div ng-hide="menuItems.length > 0" layout-padding>
+		<md-toolbar class="md-theme-light">
+		    <h2 class="md-toolbar-tools">
+		    	<span>Menu</span>
+			</h2>
+		</md-toolbar>
+	
+		<form name="menuForm">
+			<div ng-repeat="menu in menus track by $index">
+				<div layout-gt-md="row">	
+    													
+					<md-input-container class="md-block" flex-gt-sm>
+						<label>Code</label> 
+						<input ng-model="menu.startDate" required> 
+					</md-input-container>
+
+					<md-input-container class="md-block" flex-gt-sm>
+						<label>Last name</label> 
+						<input ng-model="menu.endDate" required>
+					</md-input-container>
+						
+					<div flex-gt-sm>
+						<md-button class="md-raised md-warn" aria-label="Remove" ng-click="removeMenu($index)">Remove</md-button>
+     				</div>											
+				</div>
+			</div>
+		</form>
+        <md-content layout="row" layout-align="end center">
+          	<md-button class="md-raised" aria-label="Add" ng-click="addMenu()">Add Menu</md-button> 							          	
+        </md-content>
+        
+        <md-toolbar class="md-theme-light">
+		    <h2 class="md-toolbar-tools">
+		    	<span>Menu Items</span>
+			</h2>
+		</md-toolbar>
+		
+        <form name="menuForm">
+			<div ng-repeat="menuItem in menuItems track by $index">
+				<div layout-gt-md="row">	
+    													
+					<md-input-container class="md-block" flex-gt-sm>
+						<label>Code</label> 
+						<input ng-model="menuItem.code" required> 
+					</md-input-container>
+
+					<md-input-container class="md-block" flex-gt-sm>
+						<label>Last name</label> 
+						<input ng-model="menuItem.description" required>
+					</md-input-container>
+
+					<md-input-container class="md-block" flex-gt-sm>
+						<label>Unit Price</label> 
+						<input type="number" ng-model="menuItem.unitPriceInCents" min="0" required> 
+					</md-input-container>
+					
+					<md-input-container class="md-block" flex-gt-sm>
+						<label>Available</label> 
+						<input ng-model="menuItem.available" required>
+					</md-input-container>
+						
+					<div flex-gt-sm>
+						<md-button class="md-raised md-warn" aria-label="Remove" ng-click="removeMenuItem($index)">Remove</md-button>
+     				</div>											
+				</div>
+			</div>
+		</form>
+        <md-content layout="row" layout-align="end center">
+          	<md-button class="md-raised" aria-label="Add" ng-click="addMenuItem()">Add Menu Item</md-button> 							          	
+        </md-content>
+    </div>   
+
+	<md-list flex> 
+		<md-list-item class="md-2-line">
+	       <img ng-src="/img/justin_taylor.jpg" class="md-avatar" alt="Profile Image" />
+	       <div class="md-list-item-text">
+	         <p>Thank you very much for this opportunity to present this technical assessment.
+	         	<br>
+	         	<a href="https://github.com/justiniantaylor/playground/tree/master/payroll">View source on GitHub</a>
+	         </p>
+	       </div>
+	    </md-list-item>	   
+	</md-list>
+</div>

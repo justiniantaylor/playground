@@ -1,0 +1,123 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Pizzeria Assignment</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="bower_components/angular-material/angular-material.min.css">
+    <link rel="stylesheet" href="app/app.css">
+</head>
+
+<body ng-app="gateway" class="gateway" ng-controller="main-controller">
+
+	<div class="container" ng-show="!authenticated">
+		<md-content class="md-padding" layout-xs="column" layout="row" layout-align="center center">
+			<div flex-xs flex-gt-sm="40" layout="column" layout-align="center center">
+				<md-card class="card-40-center"> 
+					<md-card-title>
+						<md-card-title-text> 
+							<span class="md-headline">Pizzeria Login</span> 
+						</md-card-title-text> 
+					</md-card-title>
+					
+					<form role="form" ng-submit="login()">
+						<div layout="column">
+				            <div layout="row" flex>
+					            <md-input-container class="md-block" flex>
+									<label>Username</label> 									
+									<input type="text" ng-model="credentials.username" id="username" name="username" placeholder="Username"> 
+								</md-input-container>												 
+							</div>
+				        </div>
+				        
+				        <div layout="column">
+				            <div layout="row" flex>
+					            <md-input-container class="md-block" flex>
+									<label>Password</label> 									
+									<input type="password" ng-model="credentials.password" id="password" name="password" placeholder="Password"> 
+								</md-input-container>												 
+							</div>
+				        </div>
+		
+						<md-card-actions layout="row" layout-align="center right">		
+			                <center>
+								<md-button type="submit" class="md-primary md-raised" ng-disabled="credentials.username == '' || credentials.password == ''">Login</md-button>	 
+						    </center>
+			            </md-card-actions> 			 
+					</form>			           						
+				</md-card>
+			</div>
+		</md-content>
+	</div>
+	
+	<div class="container" ng-show="authenticated">
+		<md-content layout-padding ng-cloak> 
+			<md-toolbar class="md-hue-2">
+				<div class="md-toolbar-tools">
+					<h2 flex md-truncate>Pizzeria Assigment</h2>
+					<md-button ng-show="!authenticated" class="md-raised" aria-label="Login" href="#/login">
+			          Login
+			        </md-button>
+			        <md-button ng-show="authenticated" class="md-raised" aria-label="Logout" ng-click="logout()">
+			          logout
+			        </md-button>
+        
+					<p ng-show="authenticated">
+						Signed in as <a href="#/" class="navbar-link">{{user}}</a>
+					</p>
+				</div>
+			</md-toolbar>
+			<md-tabs md-dynamic-height md-border-bottom >
+				<md-tab label="Menu"> 
+					<md-content class="md-padding">
+						<div ng-include="'/templates/menu.html'"></div>					
+					</md-content> 
+				</md-tab> 
+				<md-tab label="Order"> 
+					<md-content class="md-padding">
+						<div ng-include="'/templates/order.html'"></div>					
+					</md-content> 
+				</md-tab> 
+				<md-tab label="Delivery"> 
+					<md-content class="md-padding">
+						<div ng-include="'/templates/delivery.html'"></div>					
+					</md-content> 
+				</md-tab> 
+			</md-tabs> 
+		</md-content>
+	</div>
+
+	<script src="bower_components/angular/angular.min.js"></script>
+	<script src="bower_components/angular-route/angular-route.min.js"></script>			
+	<script src="bower_components/angular-resource/angular-resource.min.js"></script>
+	<script src="bower_components/angular-aria/angular-aria.min.js"></script>
+	<script src="bower_components/angular-messages/angular-messages.min.js"></script>
+	<script src="bower_components/angular-sanitize/angular-sanitize.min.js"></script>
+	<script src="bower_components/angular-animate/angular-animate.min.js"></script>
+ 	<script src="bower_components/angular-material/angular-material.min.js"></script>
+
+	<script src="app/services.js"></script>
+	<script src="app/service/customer-service.js"></script>
+	<script src="app/service/address-service.js"></script>
+	<script src="app/service/menu-service.js"></script>
+	<script src="app/service/menu-item-service.js"></script>
+	<script src="app/service/order-service.js"></script>
+	<script src="app/service/order-item-service.js"></script>
+	<script src="app/service/campaign-service.js"></script>
+	<script src="app/service/campaign-notification-service.js"></script>
+
+	
+	<script src="app/controllers.js"></script>
+	<script src="app/controller/main-controller.js"></script>
+	<script src="app/controller/menu-controller.js"></script>
+	<script src="app/controller/order-controller.js"></script>
+	<script src="app/controller/delivery-controller.js"></script>
+	
+	<script src="app/app.js"></script>
+</body>
+</html>
