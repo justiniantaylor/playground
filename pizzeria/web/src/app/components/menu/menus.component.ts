@@ -69,8 +69,12 @@ export class MenusComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.menus$ = this._store.select('menus');
     this.menus$.subscribe(b => this.completeLoading());
+      
     this.menu$ = this._store.select('menu');
-    this.menu$.subscribe(b => this.completeLoading());
+    this.menu$.subscribe(menu => 
+        this.completeLoading();
+        this._store.dispatch(this._menuItemsActions.loadMenuItems(menu.id));
+    );
 
     this._store.dispatch(this._menuActions.loadMenus());
 

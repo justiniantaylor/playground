@@ -1,7 +1,6 @@
-package com.pizzeria.resource.domain;
+package com.pizzeria.resource.service.delivery.location.domain;
 
 import java.time.LocalDate;
-import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,9 +9,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-
-import org.hibernate.annotations.OrderBy;
 
 /**
  * Domain Entity for the menu. You may 
@@ -40,10 +36,6 @@ public class Delivery {
 	@ManyToOne
     @JoinColumn(name = "server_id", nullable = false)
     private Employee deliveryPerson;
-	
-	@OneToMany(mappedBy = "delivery")
-    @OrderBy(clause = "order_date ASC")
-    private List<Order> orders;
 
 	public Long getId() {
 		return id;
@@ -91,13 +83,5 @@ public class Delivery {
 
 	public void setDeliveryPerson(Employee deliveryPerson) {
 		this.deliveryPerson = deliveryPerson;
-	}
-
-	public List<Order> getOrders() {
-		return orders;
-	}
-
-	public void setOrders(List<Order> orders) {
-		this.orders = orders;
 	}
 }

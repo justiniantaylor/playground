@@ -14,7 +14,7 @@ export class MenuItemEffects {
 
 @Effect() loadMenuItems$ = this._update$
     .ofType(MenuItemActions.LOAD_MENU_ITEMS)
-    .switchMap(() => this._svc.getMenuItems())
+    .switchMap(menuId => this._svc.getMenuItems(menuId))
     .map(menuItems => this._menuItemActions.loadMenuItemsSuccess(menuItems));
 
 @Effect() getMenuItem$ = this._update$
