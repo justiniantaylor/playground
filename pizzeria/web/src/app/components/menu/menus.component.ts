@@ -11,8 +11,10 @@ import { SlimLoadingBarService } from 'ng2-slim-loading-bar';
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 
 import { AppState } from '../../reducers';
-import { MenuActions } from '../../actions';
-import { Menu } from '../../models';
+import { MenuActions, 
+         MenuItemActions } from '../../actions';
+import { Menu, 
+         MenuItem } from '../../models';
 
 @Component({
   selector: 'menus',
@@ -39,8 +41,10 @@ import { Menu } from '../../models';
 
     <div class="col">
         <menu-detail [menu]="menu$ | async"
-                      (savedEvent)="saveMenu($event)"
-                      (cancelledEvent)="clearMenu($event)">
+                     [menuItems]="menuItems$ | async"
+                     (savedEvent)="saveMenu($event)"
+                     (cancelledEvent)="clearMenu($event)"
+                     (deletedMenuItemEvent)="deleteMenuItem($event)">
         </menu-detail>
     </div>
 </div>      
@@ -55,11 +59,13 @@ export class MenusComponent implements OnInit, OnDestroy {
 
   menus$: Observable<Array<Menu>>;
   menu$: Observable<Menu>;
+  menuItems$: Observable<Array<MenuItem>>;
 
   constructor( private _store: Store<AppState>,
                private _route: ActivatedRoute,
                private _router: Router,
                private _menuActions: MenuActions,
+               private _menuItemActions: MenuItemActions,
                private _slimLoadingBarService: SlimLoadingBarService,
                public toastr: ToastsManager,
                public vcr: ViewContainerRef) {
@@ -71,10 +77,13 @@ export class MenusComponent implements OnInit, OnDestroy {
     this.menus$.subscribe(b => this.completeLoading());
       
     this.menu$ = this._store.select('menu');
-    this.menu$.subscribe(menu => 
-        this.completeLoading();
-        this._store.dispatch(this._menuItemsActions.loadMenuItems(menu.id));
+    this.menu$.subscribe(m => {
+            this.completeLoading();
+            this._store.dispatch(this._menuItemActions.loadMenuItems(m.id));
+        }
     );
+        
+    this.menuItems$ = this._store.select('menuItems');
 
     this._store.dispatch(this._menuActions.loadMenus());
 
@@ -105,7 +114,7 @@ export class MenusComponent implements OnInit, OnDestroy {
     this.addingMenu = false;
     this.navigated = true;
     this._store.dispatch(this._menuActions.getMenu(menu.id));
-    this._router.navigate(['/menus',menu.id]);
+    this._router.navigate(['/menu',menu.id]);
   }
 
   addMenu() {
@@ -128,8 +137,14 @@ export class MenusComponent implements OnInit, OnDestroy {
   deleteMenu(menu: Menu) {
     this.startLoading();
     this._store.dispatch(this._menuActions.deleteMenu(menu));
-    this._router.navigate(['/menus']);
+    this._router.navigate(['/menu']);
     this.toastr.success('You successfully deleted the menu.', 'Deleted!');
+  }
+    
+  deleteMenuItem(menuItem: MenuItem) {
+    this.startLoading();
+    this._store.dispatch(this._menuItemActions.deleteMenuItem(menuItem));
+    this.toastr.success('You successfully deleted the menu item.', 'Deleted!');
   }
 
   startLoading() {

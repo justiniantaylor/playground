@@ -4,9 +4,10 @@ import { Action } from '@ngrx/store';
 @Injectable()
 export class MenuItemActions {
     static LOAD_MENU_ITEMS = '[MenuItem] Load Menu Items';
-    loadMenuItems(): Action {
+    loadMenuItems(menuId): Action {
         return {
-            type: MenuItemActions.LOAD_MENU_ITEMS
+            type: MenuItemActions.LOAD_MENU_ITEMS,
+            payload: menuId
         };
     }
 

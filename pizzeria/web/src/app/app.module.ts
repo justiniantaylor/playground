@@ -9,6 +9,7 @@ import { ToastModule } from 'ng2-toastr/ng2-toastr';
 
 /* CUSTOM MODULES */
 import { MenusModule } from './components/menu/menus.module';
+import { OrdersModule } from './components/order/orders.module';
 import { AppRoutingModule } from './app-routing.module';
 
 /* CUSTOM COMPONENT AND SERVICES */
@@ -17,16 +18,22 @@ import { NavbarComponent } from './shared';
 import { AppComponent } from './app.component';
 
 import { MenuService,
-         MenuItemService } from './services';
+         MenuItemService,
+         OrderService,
+         OrderItemService } from './services';
 
 /* NGRX */
 import reducer from './reducers';
 
 import { MenuActions,
-         MenuItemActions } from './actions';
+         MenuItemActions,
+         OrderActions,
+         OrderItemActions } from './actions';
 
 import { MenuEffects,
-         MenuItemEffects } from './effects';
+         MenuItemEffects,
+         OrderEffects,
+         OrderItemEffects } from './effects';
 
 @NgModule({
   declarations: [
@@ -46,13 +53,18 @@ import { MenuEffects,
     
     EffectsModule.run(MenuEffects),
     EffectsModule.run(MenuItemEffects),
+    EffectsModule.run(OrderEffects),
+    EffectsModule.run(OrderItemEffects),
     
     MenusModule,
+    OrdersModule,
     
     AppRoutingModule
   ],
   providers: [MenuActions, MenuService,
               MenuItemActions, MenuItemService,
+              OrderActions, OrderService,
+              OrderItemActions, OrderItemService
   ],
   bootstrap: [AppComponent]
 })

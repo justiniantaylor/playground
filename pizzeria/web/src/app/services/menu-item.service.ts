@@ -18,23 +18,23 @@ export class MenuItemService {
             .map(res => res.json());
     }
 
-    getMenuItem(menuId, id): Observable<MenuItem> {
-        return this._http.get("/resource/menu/" + menuId + BASE_URL + id)
+    getMenuItem(id): Observable<MenuItem> {
+        return this._http.get("/resource/menu/" + BASE_URL + id)
             .map(res => res.json());
     }
 
     saveMenuItem(menuItem: MenuItem) {
         if (menuItem.id === 0 || menuItem.id == null) {
-            return this._http.post("/resource/menu/" +  menuItem.menu.id + BASE_URL, JSON.stringify(menuItem), HEADER)
+            return this._http.post("/resource/menu/" +  menuItem.menuId + BASE_URL, JSON.stringify(menuItem), HEADER)
                 .map(res => res.json());
         } else {
-            return this._http.put("/resource/menu/" +  menuItem.menu.id + BASE_URL + menuItem.id, JSON.stringify(menuItem), HEADER)
+            return this._http.put("/resource/menu/" +  menuItem.menuId + BASE_URL + menuItem.id, JSON.stringify(menuItem), HEADER)
                 .map(res => res.json());
         }
     }
 
     deleteMenuItem(menuItem: MenuItem) {
-        return this._http.delete("/resource/menu/" + menuItem.menu.id + BASE_URL + menuItem.id)
+        return this._http.delete("/resource/menu/" + menuItem.menuId + BASE_URL + menuItem.id)
             .map(res => menuItem);
     }
 }
