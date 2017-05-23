@@ -45,6 +45,7 @@ import { Order,
 
         <form [formGroup]="orderItemForm" (ngSubmit)="save(orderItemForm.value)" novalidate>
             <input type="hidden" name="id" formControlName="id">
+            <input type="hidden" name="orderId" formControlName="orderId">
                
             <div class="form-group">
                 <label for="">Code</label>
@@ -53,6 +54,12 @@ import { Order,
                 <small [hidden]="orderItemForm.controls.code.valid || orderItemForm.controls.code.pristine" class="text-danger">
                     Code is required (maximum 50 characters).
                 </small>
+            </div>
+            <div class="form-group">
+                <label for="">Code</label>
+                <select class="form-control" formControlName="menuItem">
+                    <option *ngFor="let menuItem of menuItems" [value]="menuItem">{{menuItem.description}}</option>
+                </select>  
             </div>
             <div class="form-group">
                 <label for="">Description</label>
@@ -70,14 +77,6 @@ import { Order,
                     Unit Price is required.
                 </small>
             </div>
-            <div class="form-group">
-                <label for="">Available</label>
-                <input type="number" class="form-control" formControlName="available">
-            
-                <small [hidden]="orderItemForm.controls.available.valid || orderItemForm.controls.available.pristine" class="text-danger">
-                   Available is required.
-                </small>
-            </div>
             <button type="submit" class="btn btn-primary" [disabled]="!orderItemForm.valid">{{orderItem.id ? "Update" : "Create"}}</button>
             <button type="button" class="btn btn-default" data-toggle="modal" data-target="#confirm-cancel-item-dialog">Cancel</button>
         </form>       
@@ -87,8 +86,8 @@ import { Order,
 })
 export class OrderItemDetailComponent implements OnChanges {
     @Input() orderItem: OrderItem;
-    @Input() orderItems: OrderItem[];
-
+    @Input() menuItems: OrderItem[];
+    
     @Output() savedEvent = new EventEmitter();
     @Output() cancelledEvent = new EventEmitter();
 
@@ -100,11 +99,10 @@ export class OrderItemDetailComponent implements OnChanges {
     ngOnChanges(changes: SimpleChanges): void {
         this.orderItemForm = this._fb.group({
             "id": ["", []],
-            "code": ["", [<any>Validators.required, <any>Validators.maxLength(50)]],
-            "description": ["", [<any>Validators.required, <any>Validators.maxLength(50)]],
+            "quantity": ["", [<any>Validators.required]],
             "unitPriceInCents": ["", []],
-            "available": ["", [<any>Validators.required]],
-            "orderId": ["", [<any>Validators.required]]
+            "orderId": ["", [<any>Validators.required]],
+            "menuItemId": ["", [<any>Validators.required]]
         });
         this.reset();
     }
@@ -113,11 +111,10 @@ export class OrderItemDetailComponent implements OnChanges {
         if (this.orderItem != null) {
             this.orderItemForm.reset({
                 id: this.orderItem.id,
-                code: this.orderItem.code,
-                description: this.orderItem.description,
+                quantity: this.orderItem.quantity,
                 unitPriceInCents: this.orderItem.unitPriceInCents,
-                available: this.orderItem.available,
-                orderId: this.orderItem.orderId
+                orderId: this.orderItem.orderId,
+                menuItemId: this.orderItem.menuItemId
             });
         }
     }

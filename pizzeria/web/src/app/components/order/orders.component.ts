@@ -48,15 +48,16 @@ import { Order } from '../../models';
 
             <div *ngIf="(orderItem$ | async) == null">
                 <order-item-list [orderItems]="orderItems$ | async"
-                                [selectedOrderItem]="orderItem$ | async"
-                                (selectedEvent)="selectOrderItem($event)"
-                                (deletedEvent)="deleteOrderItem($event)">
+                                 [selectedOrderItem]="orderItem$ | async"
+                                 (selectedEvent)="selectOrderItem($event)"
+                                 (deletedEvent)="deleteOrderItem($event)">
                 </order-item-list>       
             </div>
             <div *ngIf="(orderItem$ | async) != null">
-                <order-item-detail [orderItem]="orderItem$ | async"        
-                                  (savedEvent)="saveOrderItem($event)"
-                                  (cancelledEvent)="clearOrderItem($event)">
+                <order-item-detail [orderItem]="orderItem$ | async"   
+                                   [menuItems]="menuItems$ | async"     
+                                   (savedEvent)="saveOrderItem($event)"
+                                   (cancelledEvent)="clearOrderItem($event)">
                 </order-item-detail>
             </div>
         </div>
@@ -76,6 +77,8 @@ export class OrdersComponent implements OnInit, OnDestroy {
     order$: Observable<Order>;
     orderItems$: Observable<Array<OrderItem>>;
     orderItem$: Observable<OrderItem>;
+    
+    menuItems$: Observable<Array<MenuItem>>;
     
     constructor(private _store: Store<AppState>,
                 private _route: ActivatedRoute,
@@ -108,6 +111,8 @@ export class OrdersComponent implements OnInit, OnDestroy {
 
         this.orderItem$ = this._store.select('orderItem');
         this.orderItems$ = this._store.select('orderItems');
+        
+        this.menuItems$ = this._store.select('menuItems');
             
         this._store.dispatch(this._orderActions.loadOrders());
 
