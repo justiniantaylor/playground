@@ -13,7 +13,9 @@ import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 import { AppState } from '../../reducers';
 import { OrderActions,
          OrderItemActions } from '../../actions';
-import { Order } from '../../models';
+import { Order, 
+         OrderItem, 
+         MenuItem } from '../../models';
 
 @Component({
     selector: 'orders',
@@ -84,7 +86,7 @@ export class OrdersComponent implements OnInit, OnDestroy {
                 private _route: ActivatedRoute,
                 private _router: Router,
                 private _orderActions: OrderActions,
-                private _orderItemsActions: OrderItemActions,
+                private _orderItemActions: OrderItemActions,
                 private _slimLoadingBarService: SlimLoadingBarService,
                 public toastr: ToastsManager,
                 public vcr: ViewContainerRef) {
@@ -98,7 +100,7 @@ export class OrdersComponent implements OnInit, OnDestroy {
         this.order$ = this._store.select('order');
         this.order$.subscribe(o => {
             this.completeLoading();
-            this._store.dispatch(this._orderItemsActions.loadOrderItems(o.id));
+            this._store.dispatch(this._orderItemActions.loadOrderItems(o.id));
         });
         this.order$.subscribe(o => {
             this.completeLoading();
