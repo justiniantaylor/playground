@@ -9,6 +9,8 @@ import { OrdersRoutingModule} from './orders-routing.module';
 import { OrdersComponent } from './orders.component';
 import { OrderDetailComponent } from './order-detail.component';
 import { OrderListComponent } from './order-list.component';
+import { OrderItemDetailComponent } from './item/order-item-detail.component';
+import { OrderItemListComponent } from './item/order-item-list.component';
 
 @NgModule({
     imports: [
@@ -22,11 +24,15 @@ import { OrderListComponent } from './order-list.component';
     declarations: [
         OrderDetailComponent,
         OrderListComponent,
+        OrderItemDetailComponent,
+        OrderItemListComponent,
         OrdersComponent
     ],
     exports: [
         OrderDetailComponent,
         OrderListComponent,
+        OrderItemDetailComponent,
+        OrderItemListComponent,
         OrdersComponent
     ],
     providers: []
