@@ -5,21 +5,27 @@ import { RouterModule,
 import { MenusComponent } from './menus.component';
 
 const menusRoutes: Routes = [
-  { path: 'menu',
-    children: [
-      { path: '',
-        component: MenusComponent },
-      { path: ':id',
-        component: MenusComponent }
-    ]}
+    {
+        path: 'menu',
+        children: [
+            {
+                path: '',
+                component: MenusComponent
+            },
+            {
+                path: ':id',
+                component: MenusComponent
+            }
+        ]
+    }
 ];
 
 @NgModule({
-  imports: [
-    RouterModule.forChild(menusRoutes)
-  ],
-  exports: [
-    RouterModule
-  ]
+    imports: [
+        RouterModule.forChild(menusRoutes)
+    ],
+    exports: [
+        RouterModule
+    ]
 })
 export class MenusRoutingModule {}

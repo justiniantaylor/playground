@@ -4,14 +4,14 @@ import { Component,
          EventEmitter,
          ChangeDetectionStrategy } from '@angular/core';
 
-import { Order } from '../../models';
+import { MenuItem } from '../../../models';
 
 @Component({
-    selector: 'order-list',
+    selector: 'menu-item-list',
     changeDetection: ChangeDetectionStrategy.OnPush,
     template:
 `
-<div class="modal fade" id="confirm-delete-dialog">
+<div class="modal fade" id="confirm-delete-item-dialog">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -21,11 +21,11 @@ import { Order } from '../../models';
                 </button>
             </div>
             <div class="modal-body">
-                <p>Are you sure you want to delete this order?</p>
+                <p>Are you sure you want to delete this menu item?</p>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="deleteOrder()">OK</button>
-                <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="doNotDeleteOrder()">Cancel</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="deleteMenuItem()">OK</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="doNotDeleteMenuItem()">Cancel</button>
             </div>
         </div>
     </div>
@@ -35,31 +35,33 @@ import { Order } from '../../models';
     <thead>
         <tr>
             <th>ID</th>
-            <th>Name</th>
             <th>Code</th>
+            <th>Unit Price in Cents</th>
+            <th>Available</th>
             <th>Action</th>
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let order of orders"
-             (click)="toggleSelected(order.id);selectedEvent.emit(order)" 
+        <tr *ngFor="let menuItem of menuItems"
+             (click)="toggleSelected(menuItem.id);selectedEvent.emit(menuItem)" 
              class="clickable"
-             [class.selected]="order.id === selectedOrder.id" 
-             [ngClass]="{'selected': selectedId === order.id}">
+             [ngClass]="{'selected': selectedId === menuItem.id}">
         
-            <td>{{order.id}}</td>
-            <td>{{order.name}}</td>
-            <td>{{order.code}}</td>
-            <td><button class="btn btn-sm btn-danger" data-toggle="modal" data-target="#confirm-delete-dialog"><i class="fa fa-fw fa-trash"></i></button></td>
+            <td>{{menuItem.id}}</td>
+            <td>{{menuItem.code}}</td>
+            <td>{{menuItem.description}}</td>
+            <td>{{menuItem.unitPriceInCents}}</td>
+            <td>{{menuItem.available}}</td>
+            <td><button class="btn btn-sm btn-danger" data-toggle="modal" data-target="#confirm-delete-item-dialog"><i class="fa fa-fw fa-trash"></i></button></td>
         </tr>
     </tbody>
-<table>
+</table>
 `
 })
-export class OrderListComponent {
+export class MenuItemListComponent {
 
-    @Input() orders: Order[];
-    @Input() selectedOrder: Order;
+    @Input() menuItems: MenuItem[];
+    @Input() selectedMenuItem: MenuItem;
     selectedId: number;
 
     @Output() selectedEvent = new EventEmitter();
@@ -74,9 +76,9 @@ export class OrderListComponent {
         }
     }
 
-    deleteOrder(){
-        this.deletedEvent.emit(this.selectedOrder)
+    deleteMenuItem(){
+        this.deletedEvent.emit(this.selectedMenuItem)
     }
 
-    doNotDeleteOrder(){}
+    doNotDeleteMenuItem(){}
 }

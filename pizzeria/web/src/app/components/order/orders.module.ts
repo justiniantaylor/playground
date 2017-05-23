@@ -11,24 +11,24 @@ import { OrderDetailComponent } from './order-detail.component';
 import { OrderListComponent } from './order-list.component';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    FormsModule,
-    ReactiveFormsModule,
-    Select2Module,
+    imports: [
+        CommonModule,
+        FormsModule,
+        ReactiveFormsModule,
+        Select2Module,
 
-    OrdersRoutingModule
-  ],
-  declarations: [
-    OrderDetailComponent,
-    OrderListComponent,
-    OrdersComponent
-  ],
-  exports: [
-      OrderDetailComponent,
-      OrderListComponent,
-      OrdersComponent
-  ],
-  providers: [ ]
+        OrdersRoutingModule
+    ],
+    declarations: [
+        OrderDetailComponent,
+        OrderListComponent,
+        OrdersComponent
+    ],
+    exports: [
+        OrderDetailComponent,
+        OrderListComponent,
+        OrdersComponent
+    ],
+    providers: []
 })
 export class OrdersModule { }

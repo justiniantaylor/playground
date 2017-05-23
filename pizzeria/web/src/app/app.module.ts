@@ -1,4 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
@@ -7,6 +8,7 @@ import { EffectsModule } from '@ngrx/effects';
 import { SlimLoadingBarModule } from 'ng2-slim-loading-bar';
 import { ToastModule,
          ToastOptions } from 'ng2-toastr/ng2-toastr';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { MenusModule } from './components/menu/menus.module';
 import { OrdersModule } from './components/order/orders.module';
@@ -45,11 +47,13 @@ import { MenuEffects,
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     FormsModule,
     HttpModule,  
     SlimLoadingBarModule.forRoot(),
     ToastModule.forRoot(),
     ToastModule,
+    NgbModule.forRoot(),
     
     StoreModule.provideStore(reducer),
     

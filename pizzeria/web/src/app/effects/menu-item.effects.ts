@@ -17,6 +17,7 @@ export class MenuItemEffects {
 
 @Effect() loadMenuItems$ = this._update$
     .ofType(MenuItemActions.LOAD_MENU_ITEMS)
+    .map(action => action.payload)
     .switchMap(menuId => this._svc.getMenuItems(menuId)     
         .map(menuItems => this._menuItemActions.loadMenuItemsSuccess(menuItems))   
         .catch((error) => Observable.of( this._notificationActions.showError(error)))
