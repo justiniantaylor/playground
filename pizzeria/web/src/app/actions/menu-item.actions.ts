@@ -35,14 +35,6 @@ export class MenuItemActions {
         };
     }
 
-    static GET_MENU_ITEM_FAILURE = '[MenuItem] Get Menu Item Failure';
-    getMenuItemFailure(string): Action {
-        return {
-            type: MenuItemActions.GET_MENU_ITEM_FAILURE,
-            payload: string
-        };
-    }
-
     static RESET_BLANK_MENU_ITEM = '[MenuItem] Reset Blank Menu Item';
     resetBlankMenuItem(): Action {
         return {

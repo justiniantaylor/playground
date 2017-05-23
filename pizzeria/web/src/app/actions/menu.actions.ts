@@ -34,14 +34,6 @@ export class MenuActions {
         };
     }
 
-    static GET_MENU_FAILURE = '[Menu] Get Menu Failure';
-    getMenuFailure(string): Action {
-        return {
-            type: MenuActions.GET_MENU_FAILURE,
-            payload: string
-        };
-    }
-
     static RESET_BLANK_MENU = '[Menu] Reset Blank Menu';
     resetBlankMenu(): Action {
         return {

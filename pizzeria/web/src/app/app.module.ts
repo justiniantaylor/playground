@@ -5,27 +5,29 @@ import { HttpModule } from '@angular/http';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { SlimLoadingBarModule } from 'ng2-slim-loading-bar';
-import { ToastModule } from 'ng2-toastr/ng2-toastr';
+import { ToastModule,
+         ToastOptions } from 'ng2-toastr/ng2-toastr';
 
-/* CUSTOM MODULES */
 import { MenusModule } from './components/menu/menus.module';
 import { OrdersModule } from './components/order/orders.module';
 import { AppRoutingModule } from './app-routing.module';
-
-/* CUSTOM COMPONENT AND SERVICES */
-import { PageNotFoundComponent } from './shared';
-import { NavbarComponent } from './shared';
 import { AppComponent } from './app.component';
 
-import { MenuService,
+import { ToastrOptions,
+         PageNotFoundComponent,
+         NavbarComponent } from './shared';
+
+import { ErrorService,
+         MenuService,
          MenuItemService,
          OrderService,
          OrderItemService } from './services';
-
 /* NGRX */
+
 import reducer from './reducers';
 
-import { MenuActions,
+import { NotificationActions,
+         MenuActions,
          MenuItemActions,
          OrderActions,
          OrderItemActions } from './actions';
@@ -61,7 +63,10 @@ import { MenuEffects,
     
     AppRoutingModule
   ],
-  providers: [MenuActions, MenuService,
+  providers: [{provide: ToastOptions, useClass: ToastrOptions},
+              NotificationActions, 
+              ErrorService,
+              MenuActions, MenuService,
               MenuItemActions, MenuItemService,
               OrderActions, OrderService,
               OrderItemActions, OrderItemService

@@ -22,9 +22,6 @@ export default function (state = initialState, action: Action): MenuItemState {
         case MenuItemActions.GET_MENU_ITEM_SUCCESS: {
             return action.payload;
         }
-        case MenuItemActions.GET_MENU_ITEM_FAILURE: {
-            return action.payload;
-        }
         default: {
             return state;
         }

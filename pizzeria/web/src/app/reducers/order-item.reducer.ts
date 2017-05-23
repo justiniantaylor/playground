@@ -1,28 +1,25 @@
 import { Action } from '@ngrx/store';
 
-import { MenuItem } from '../models';
-import { MenuItemActions } from '../actions';
+import { OrderItem } from '../models';
+import { OrderItemActions } from '../actions';
 
-export type MenuItemState = MenuItem;
+export type OrderItemState = OrderItem;
 
-const initialState: MenuItemState = {
+const initialState: OrderItemState = {
     id: null,
     code: '',
     description: '',
     unitPriceInCents: null,
     available: null,
-    menuId: null
+    orderId: null
 };
 
-export default function (state = initialState, action: Action): MenuItemState {
+export default function (state = initialState, action: Action): OrderItemState {
     switch (action.type) {
-        case MenuItemActions.RESET_BLANK_MENU_ITEM: {
+        case OrderItemActions.RESET_BLANK_ORDER_ITEM: {
             return initialState;
         }
-        case MenuItemActions.GET_MENU_ITEM_SUCCESS: {
-            return action.payload;
-        }
-        case MenuItemActions.GET_MENU_ITEM_FAILURE: {
+        case OrderItemActions.GET_ORDER_ITEM_SUCCESS: {
             return action.payload;
         }
         default: {

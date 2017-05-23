@@ -34,14 +34,6 @@ export class OrderActions {
         };
     }
 
-    static GET_ORDER_FAILURE = '[Order] Get Order Failure';
-    getOrderFailure(string): Action {
-        return {
-            type: OrderActions.GET_ORDER_FAILURE,
-            payload: string
-        };
-    }
-
     static RESET_BLANK_ORDER = '[Order] Reset Blank Order';
     resetBlankOrder(): Action {
         return {

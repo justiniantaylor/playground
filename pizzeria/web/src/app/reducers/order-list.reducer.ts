@@ -1,23 +1,23 @@
 import { Action } from '@ngrx/store';
 
-import { Menu } from '../models';
-import { MenuActions } from '../actions';
+import { Order } from '../models';
+import { OrderActions } from '../actions';
 
 import * as _ from 'lodash';
 
-export type MenuListState = Menu[];
+export type OrderListState = Order[];
 
-const initialState: MenuListState = [];
+const initialState: OrderListState = [];
 
-export default function (state = initialState, action: Action): MenuListState {
+export default function (state = initialState, action: Action): OrderListState {
     switch (action.type) {
-        case MenuActions.LOAD_MENUS_SUCCESS: {
+        case OrderActions.LOAD_ORDERS_SUCCESS: {
             return action.payload;
         }
-        case MenuActions.ADD_MENU_SUCCESS: {
+        case OrderActions.ADD_ORDER_SUCCESS: {
             return [...state, action.payload];
         }
-        case MenuActions.SAVE_MENU_SUCCESS: {
+        case OrderActions.SAVE_ORDER_SUCCESS: {
             let index = _.findIndex(state, {id: action.payload.id});
             if (index >= 0) {
                 return [
@@ -28,7 +28,7 @@ export default function (state = initialState, action: Action): MenuListState {
             }
             return state;
         }
-        case MenuActions.DELETE_MENU_SUCCESS: {
+        case OrderActions.DELETE_ORDER_SUCCESS: {
             return state.filter(menu => {
                 return menu.id !== action.payload.id;
             });
