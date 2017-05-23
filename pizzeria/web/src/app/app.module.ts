@@ -24,57 +24,57 @@ import { ErrorService,
          MenuItemService,
          OrderService,
          OrderItemService } from './services';
-/* NGRX */
 
+/* NGRX */
 import reducer from './reducers';
 
 import { NotificationActions,
-         MenuActions,
-         MenuItemActions,
-         OrderActions,
-         OrderItemActions } from './actions';
+    MenuActions,
+    MenuItemActions,
+    OrderActions,
+    OrderItemActions } from './actions';
 
 import { MenuEffects,
-         MenuItemEffects,
-         OrderEffects,
-         OrderItemEffects } from './effects';
+    MenuItemEffects,
+    OrderEffects,
+    OrderItemEffects } from './effects';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    PageNotFoundComponent,
-    NavbarComponent
-  ],
-  imports: [
-    BrowserModule,
-    BrowserAnimationsModule,
-    FormsModule,
-    HttpModule,  
-    SlimLoadingBarModule.forRoot(),
-    ToastModule.forRoot(),
-    ToastModule,
-    NgbModule.forRoot(),
-    
-    StoreModule.provideStore(reducer),
-    
-    EffectsModule.run(MenuEffects),
-    EffectsModule.run(MenuItemEffects),
-    EffectsModule.run(OrderEffects),
-    EffectsModule.run(OrderItemEffects),
-    
-    MenusModule,
-    OrdersModule,
-    
-    AppRoutingModule
-  ],
-  providers: [{provide: ToastOptions, useClass: ToastrOptions},
-              NotificationActions, 
-              ErrorService,
-              MenuActions, MenuService,
-              MenuItemActions, MenuItemService,
-              OrderActions, OrderService,
-              OrderItemActions, OrderItemService
-  ],
-  bootstrap: [AppComponent]
+    declarations: [
+        AppComponent,
+        PageNotFoundComponent,
+        NavbarComponent
+    ],
+    imports: [
+        BrowserModule,
+        BrowserAnimationsModule,
+        FormsModule,
+        HttpModule,
+        SlimLoadingBarModule.forRoot(),
+        ToastModule.forRoot(),
+        ToastModule,
+        NgbModule.forRoot(),
+
+        StoreModule.provideStore(reducer),
+
+        EffectsModule.run(MenuEffects),
+        EffectsModule.run(MenuItemEffects),
+        EffectsModule.run(OrderEffects),
+        EffectsModule.run(OrderItemEffects),
+
+        MenusModule,
+        OrdersModule,
+
+        AppRoutingModule
+    ],
+    providers: [{ provide: ToastOptions, useClass: ToastrOptions },
+        NotificationActions,
+        ErrorService,
+        MenuActions, MenuService,
+        MenuItemActions, MenuItemService,
+        OrderActions, OrderService,
+        OrderItemActions, OrderItemService
+    ],
+    bootstrap: [AppComponent]
 })
 export class AppModule { }
