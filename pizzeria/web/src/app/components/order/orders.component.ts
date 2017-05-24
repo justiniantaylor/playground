@@ -7,8 +7,6 @@ import { Store } from '@ngrx/store';
 import { Subscription } from 'rxjs/Subscription';
 import { Router,
          ActivatedRoute } from '@angular/router';
-import { SlimLoadingBarService } from 'ng2-slim-loading-bar';
-import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 
 import { AppState } from '../../reducers';
 import { OrderActions,
@@ -86,24 +84,14 @@ export class OrdersComponent implements OnInit, OnDestroy {
                 private _route: ActivatedRoute,
                 private _router: Router,
                 private _orderActions: OrderActions,
-                private _orderItemActions: OrderItemActions,
-                private _slimLoadingBarService: SlimLoadingBarService,
-                public toastr: ToastsManager,
-                public vcr: ViewContainerRef) {
-                this.toastr.setRootViewContainerRef(vcr);
-    }
+                private _orderItemActions: OrderItemActions) {}
 
     ngOnInit(): void {
         this.orders$ = this._store.select('orders');
         this.orders$.subscribe(b => this.completeLoading());
 
         this.order$ = this._store.select('order');
-        this.order$.subscribe(o => {
-            this.completeLoading();
-            this._store.dispatch(this._orderItemActions.loadOrderItems(o.id));
-        });
-        this.order$.subscribe(o => {
-            this.completeLoading();
+        this.order$.subscribe(o => {            
             if(o.id != null) {
                 this._store.dispatch(this._orderItemActions.loadOrderItems(o.id));   
             } else {
@@ -146,7 +134,6 @@ export class OrdersComponent implements OnInit, OnDestroy {
     }
 
     selectOrder(order: Order) {
-        this.startLoading();
         this.addingOrder = false;
         this.navigated = true;
         this._store.dispatch(this._orderActions.getOrder(order.id));
@@ -154,58 +141,34 @@ export class OrdersComponent implements OnInit, OnDestroy {
     }
         
     selectOrderItem(orderItem: OrderItem) {
-        this.startLoading();
         this.addingOrderItem = false;
         this._store.dispatch(this._orderItemActions.getOrderItem(orderItem.id));       
     }
 
     addOrder() {
-        this.startLoading();
         this.clearOrder();
         this.addingOrder = true;
     }
         
     addOrderItem() {
-        this.startLoading();
         this.clearOrderItem();
         this.addingOrderItem = true;
     }
 
     saveOrderItem(orderItem: OrderItem) {
-        this.startLoading();
         if (orderItem.id === 0 || orderItem.id == null) {
             this._store.dispatch(this._orderItemActions.addOrderItem(orderItem));
             this.clearOrderItem();
         } else {
             this._store.dispatch(this._orderItemActions.saveOrderItem(orderItem));
-            this.toastr.success('You successfully saved the order item.', 'Saved!');
         }
     }
 
     deleteOrder(order: Order) {
-        this.startLoading();
         this._store.dispatch(this._orderActions.deleteOrder(order));
-        this._router.navigate(['/order']);
-        this.toastr.success('You successfully deleted the order.', 'Deleted!');
     }
         
     deleteOrderItem(orderItem: OrderItem) {
-        this.startLoading();
         this._store.dispatch(this._orderItemActions.deleteOrderItem(orderItem));
-        this.toastr.success('You successfully deleted the order item.', 'Deleted!');
-    }
-
-    startLoading() {
-        this._slimLoadingBarService.start(() => {
-            console.log('Loading complete');
-        });
-    }
-
-    stopLoading() {
-        this._slimLoadingBarService.stop();
-    }
-
-    completeLoading() {
-        this._slimLoadingBarService.complete();
     }
 }

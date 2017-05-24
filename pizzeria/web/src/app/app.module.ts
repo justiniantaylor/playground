@@ -29,15 +29,16 @@ import { ErrorService,
 import reducer from './reducers';
 
 import { NotificationActions,
-    MenuActions,
-    MenuItemActions,
-    OrderActions,
-    OrderItemActions } from './actions';
+         MenuActions,
+         MenuItemActions,
+         OrderActions,
+         OrderItemActions } from './actions';
 
-import { MenuEffects,
-    MenuItemEffects,
-    OrderEffects,
-    OrderItemEffects } from './effects';
+import { NotificationEffects,
+         MenuEffects,
+         MenuItemEffects,
+         OrderEffects,
+         OrderItemEffects } from './effects';
 
 @NgModule({
     declarations: [
@@ -57,6 +58,7 @@ import { MenuEffects,
 
         StoreModule.provideStore(reducer),
 
+        EffectsModule.run(NotificationEffects),
         EffectsModule.run(MenuEffects),
         EffectsModule.run(MenuItemEffects),
         EffectsModule.run(OrderEffects),

@@ -7,8 +7,6 @@ import { Store } from '@ngrx/store';
 import { Subscription } from 'rxjs/Subscription';
 import { Router,
          ActivatedRoute } from '@angular/router';
-import { SlimLoadingBarService } from 'ng2-slim-loading-bar';
-import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 
 import { AppState } from '../../reducers';
 import { MenuActions,
@@ -82,12 +80,7 @@ export class MenusComponent implements OnInit, OnDestroy {
                 private _route: ActivatedRoute,
                 private _router: Router,
                 private _menuActions: MenuActions,
-                private _menuItemActions: MenuItemActions,
-                private _slimLoadingBarService: SlimLoadingBarService,
-                public toastr: ToastsManager,
-                public vcr: ViewContainerRef) {
-                this.toastr.setRootViewContainerRef(vcr);
-    }
+                private _menuItemActions: MenuItemActions) {}
 
     ngOnInit(): void {
         this.menus$ = this._store.select('menus');
@@ -95,7 +88,6 @@ export class MenusComponent implements OnInit, OnDestroy {
 
         this.menu$ = this._store.select('menu');
         this.menu$.subscribe(m => {
-            this.completeLoading();
             if(m.id != null) {
                 this._store.dispatch(this._menuItemActions.loadMenuItems(m.id));   
             } else {
@@ -144,70 +136,46 @@ export class MenusComponent implements OnInit, OnDestroy {
     }
     
     selectMenuItem(menuItem: MenuItem) {
-        this.startLoading();
         this.addingMenuItem = false;
         this.navigated = true;
         this._store.dispatch(this._menuItemActions.getMenuItem(menuItem.id));
     }
 
     addMenu() {
-        this.startLoading();
         this.clearMenu();
         this.addingMenu = true;
     }
     
     addMenuItem() {
-        this.startLoading();
         this.clearMenuItem();
         this.addingMenuItem = true;
     }
 
     saveMenu(menu: Menu) {
-        this.startLoading();
+
         if (menu.id === 0 || menu.id == null) {
             this._store.dispatch(this._menuActions.addMenu(menu));
             this.clearMenu();
         } else {
             this._store.dispatch(this._menuActions.saveMenu(menu));
-            this.toastr.success('You successfully saved the menu.', 'Saved!');
         }
     }
     
     saveMenuItem(menuItem: MenuItem) {
-        this.startLoading();
         if (menuItem.id === 0 || menuItem.id == null) {
             this._store.dispatch(this._menuItemActions.addMenuItem(menuItem));
             this.clearMenuItem();
         } else {
             this._store.dispatch(this._menuItemActions.saveMenuItem(menuItem));
-            this.toastr.success('You successfully saved the menu item.', 'Saved!');
         }
     }
 
     deleteMenu(menu: Menu) {
-        this.startLoading();
         this._store.dispatch(this._menuActions.deleteMenu(menu));
         this._router.navigate(['/menu']);
-        this.toastr.success('You successfully deleted the menu.', 'Deleted!');
     }
 
     deleteMenuItem(menuItem: MenuItem) {
-        this.startLoading();
         this._store.dispatch(this._menuItemActions.deleteMenuItem(menuItem));
-        this.toastr.success('You successfully deleted the menu item.', 'Deleted!');
-    }
-
-    startLoading() {
-        this._slimLoadingBarService.start(() => {
-            console.log('Loading complete');
-        });
-    }
-
-    stopLoading() {
-        this._slimLoadingBarService.stop();
-    }
-
-    completeLoading() {
-        this._slimLoadingBarService.complete();
     }
 }

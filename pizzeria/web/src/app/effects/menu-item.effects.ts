@@ -7,9 +7,12 @@ import { MenuItemActions,
          NotificationActions } from '../actions';
 import { MenuItemService } from '../services';
 
+import { SlimLoadingBarService } from 'ng2-slim-loading-bar';
+
 @Injectable()
 export class MenuItemEffects {
     constructor ( private _update$: Actions,
+                  private _slimLoadingBarService: SlimLoadingBarService,
                   private _notificationActions: NotificationActions,
                   private _menuItemActions: MenuItemActions,
                   private _svc: MenuItemService,
@@ -19,7 +22,10 @@ export class MenuItemEffects {
     .ofType(MenuItemActions.LOAD_MENU_ITEMS)
     .map(action => action.payload)
     .switchMap(menuId => this._svc.getMenuItems(menuId)     
-        .map(menuItems => this._menuItemActions.loadMenuItemsSuccess(menuItems))   
+        .map(menuItems => {
+            this._slimLoadingBarService.complete();
+            return this._menuItemActions.loadMenuItemsSuccess(menuItems)
+        })   
         .catch((error) => Observable.of( this._notificationActions.showError(error)))
     );
 
@@ -27,7 +33,10 @@ export class MenuItemEffects {
     .ofType(MenuItemActions.GET_MENU_ITEM)
     .map(action => action.payload)
     .switchMap(id => this._svc.getMenuItem(id)
-        .map(menuItem => this._menuItemActions.getMenuItemSuccess(menuItem))
+        .map(menuItem => {
+            this._slimLoadingBarService.complete();
+            return this._menuItemActions.getMenuItemSuccess(menuItem)        
+        })
         .catch((error) => Observable.of( this._notificationActions.showError(error)))
     );    
 
@@ -35,7 +44,20 @@ export class MenuItemEffects {
     .ofType(MenuItemActions.SAVE_MENU_ITEM)
     .map(action => action.payload)
     .switchMap(menuItem =>  this._svc.saveMenuItem(menuItem)
-        .map(menuItem => this._menuItemActions.saveMenuItemSuccess(menuItem))  
+        .map(menuItem => {
+            this._slimLoadingBarService.complete();
+            
+            let notification: Notification = {
+                type: NotificationType.SUCCESS,
+                status: 200,
+                description: null,
+                header: 'Saved',
+                message: 'You successfully saved the menu item.'
+            };
+            this._store.dispatch(this._notificationActions.showSuccess(notification));
+            
+            return this._menuItemActions.saveMenuItemSuccess(menuItem)
+        })  
         .catch((error) => Observable.of( this._notificationActions.showError(error)))
     );    
 
@@ -43,7 +65,20 @@ export class MenuItemEffects {
     .ofType(MenuItemActions.ADD_MENU_ITEM)
     .map(action => action.payload)
     .switchMap(menuItem => this._svc.saveMenuItem(menuItem)
-        .map(menuItem => this._menuItemActions.addMenuItemSuccess(menuItem))
+        .map(menuItem => {
+            this._slimLoadingBarService.complete();
+            
+            let notification: Notification = {
+                type: NotificationType.SUCCESS,
+                status: 200,
+                description: null,
+                header: 'Added',
+                message: 'You successfully added the menu item.'
+            };
+            this._store.dispatch(this._notificationActions.showSuccess(notification));
+            
+            return this._menuItemActions.addMenuItemSuccess(menuItem)
+        })
         .catch((error) => Observable.of( this._notificationActions.showError(error)))   
     )    
 
@@ -51,7 +86,20 @@ export class MenuItemEffects {
     .ofType(MenuItemActions.DELETE_MENU_ITEM)
     .map(action => action.payload)
     .switchMap(menuItem => this._svc.deleteMenuItem(menuItem)
-        .map(menuItem => this._menuItemActions.deleteMenuItemSuccess(menuItem))  
+        .map(menuItem => {
+            this._slimLoadingBarService.complete();
+            
+            let notification: Notification = {
+                type: NotificationType.SUCCESS,
+                status: 200,
+                description: null,
+                header: 'Added',
+                message: 'You successfully deleted the menu item.'
+            };
+            this._store.dispatch(this._notificationActions.showSuccess(notification));
+            
+            return this._menuItemActions.deleteMenuItemSuccess(menuItem)
+        })  
         .catch((error) => Observable.of( this._notificationActions.showError(error))) 
     );    
 }
